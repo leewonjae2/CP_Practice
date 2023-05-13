@@ -1,10 +1,13 @@
 #include "Lab2.h"
-#include <iostream>
+#include <fstream>
 
 int main()
 {
 	using namespace std;
+	ifstream fin;
+	fin.open("C://case2.txt");
 
-	lab2::PrintIntegers(cin, cout);
-	lab2::PrintMaxFloat(cin, cout);
+	lab2::PrintMaxFloat(fin, cout);
+
+	return 0;
 }

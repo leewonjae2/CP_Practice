@@ -58,7 +58,7 @@ namespace lab2
             else
             {
                 out << setw(5) << ' ' << setw(15) << internal 
-                    << showpos << setprecision(3) << number << "\n";
+                    << fixed << showpos << setprecision(3) << number << "\n";
 
                 if (max < number)
                 {
@@ -66,7 +66,7 @@ namespace lab2
                 }
             }
         }
-        out << setw(5) << "max:" << setw(15) << internal
+        out << setw(5) << left << "max:" << setw(15) << internal
             << fixed << showpos << setprecision(3) << max << "\n";
     }
 }

@@ -14,8 +14,8 @@ namespace lab2
             << setw(11) << "dec"
             << setw(9)  << "hex" << "\n";
 
-        out << setw(13) << setfill('-') << right << '.'
-            << setw(11) << '.'
+        out << setw(13) << setfill('-') << right << ' '
+            << setw(11) << ' '
             << setw(9)  << "\n";
 
 
@@ -36,7 +36,6 @@ namespace lab2
                 out << hex << setw(9)  << number << "\n";
             }
         }
-        in.ignore(LONG_MAX);
     }
 
     void PrintMaxFloat(std::istream& in, std::ostream& out)
@@ -47,7 +46,6 @@ namespace lab2
         float max = FLT_MIN;
         string trash;
 
-        out << "printmaxfloat";
         while (!in.eof())
         {
             in >> number;

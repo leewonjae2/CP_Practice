@@ -1,5 +1,6 @@
-#include "Lab2.h"
 #include <iomanip>
+
+#include "Lab2.h"
 
 namespace lab2
 {

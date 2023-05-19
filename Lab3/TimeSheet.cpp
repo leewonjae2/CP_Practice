@@ -6,6 +6,13 @@ namespace lab3
 
 	
 {
+	TimeSheet::TimeSheet()
+		: mSize(0)
+		, mName("")
+		, mMaxEntries(0)
+		, mTimeSheet(0)
+		, mIndex(0)
+		, mDeviation(0) {}
 
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
 		: mSize(strlen(name) + 1)
@@ -122,19 +129,34 @@ namespace lab3
 
 	TimeSheet TimeSheet::operator=(const TimeSheet& other)
 	{
-		TimeSheet result;
-		result.mSize = other.mSize;
+		
+		mSize = other.mSize;
 		mMaxEntries = other.mMaxEntries;
 		mIndex = other.mIndex;
 		mName = other.GetName();
 		
+		int* tempTimeSheet;
+		int* tempTimeSheet2;
+		float* tempDeviation;
+		float* tempDeviation2;
+
+		tempTimeSheet = mTimeSheet;
+		tempTimeSheet2 = other.mTimeSheet;
+
 		mTimeSheet = new int[other.mMaxEntries];
-		memcpy(mTimeSheet, other.mTimeSheet, other.mMaxEntries * sizeof(int));
+		memcpy(mTimeSheet, tempTimeSheet2, other.mMaxEntries * sizeof(int));
+		
+		delete[] tempTimeSheet;
 
+
+		tempDeviation = mDeviation;
+		tempDeviation2 = other.mDeviation;
 		mDeviation = new float[other.mMaxEntries];
-		memcpy(mDeviation, other.mDeviation, other.mMaxEntries * sizeof(float));
+		memcpy(mDeviation, tempDeviation2, other.mMaxEntries * sizeof(float));
+		
+		delete[] tempDeviation;
 
-		return result;
+		return *this;
 	}
 
 	TimeSheet::~TimeSheet()

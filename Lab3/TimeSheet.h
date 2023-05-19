@@ -19,10 +19,11 @@ namespace lab3
 
 	private:
 		char* mName;
-		unsigned int mSize;
+		size_t mSize;
 		unsigned int mMaxEntries;
 		int* mTimeSheet;
 		unsigned int mIndex;
+		float* mDeviation;
 		// 필요에 따라 private 변수와 메서드를 추가하세요.
 	};
 }

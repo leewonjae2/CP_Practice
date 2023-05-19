@@ -1,11 +1,12 @@
 #include <cmath>
+#include <string>
 
 #include "TimeSheet.h"
 
 namespace lab3
 {
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
-		:mSize(strlen(name) + 1)
+		: mSize(strlen(name) + 1)
 		, mMaxEntries(maxEntries)
 		, mIndex(0)
 	{
@@ -13,12 +14,14 @@ namespace lab3
 		memcpy(mName, name, mSize);
 
 		mTimeSheet = new int[mMaxEntries];
+
+		mDeviation = new float[mMaxEntries];
 	}
 
 
 	TimeSheet::TimeSheet(const TimeSheet& other)
-		: mMaxEntries(other.mMaxEntries)
-		, mSize(other.mSize)
+		: mSize(other.mSize)
+		, mMaxEntries(other.mMaxEntries)
 		, mIndex(0)
 	{
 		mName = new char[mSize];
@@ -26,11 +29,15 @@ namespace lab3
 
 		mTimeSheet = new int[mMaxEntries];
 		memcpy(mTimeSheet, other.mTimeSheet, mMaxEntries);
+
+		mDeviation = new float[mMaxEntries];
+		memcpy(mDeviation, other.mDeviation, mMaxEntries);
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-		if (timeInHours <= 10 && timeInHours >= 1 && mIndex < mMaxEntries) {
+		if (timeInHours <= 10 && timeInHours >= 1 && mIndex < mMaxEntries)
+		{
 			mTimeSheet[mIndex] = timeInHours;
 			mIndex++;
 		}
@@ -38,16 +45,20 @@ namespace lab3
 
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
-		if (index < mIndex) {
+		if (index < mIndex)
+		{
 			return mTimeSheet[index];
 		}
-		else return -1;
+		else
+		{
+			return -1;
+		}
 	}
 
 	int TimeSheet::GetTotalTime() const
 	{
 		int result = 0;
-		int index = 0;
+		unsigned int index = 0;
 
 		while (index < mIndex)
 		{
@@ -61,27 +72,29 @@ namespace lab3
 	float TimeSheet::GetAverageTime() const
 	{
 		float result = 0;
-		int index = 0;
+		unsigned int index = 0;
 
 		while (index < mIndex)
 		{
 			result += mTimeSheet[index];
 			index++;
 		}
-
+		if (index == 0)
+		{
+			return 0.0f;
+		}
 		return result / mIndex;
 	}
 
 	float TimeSheet::GetStandardDeviation() const
 	{
 		float average = GetAverageTime();
-		int index = 0;
-		float* deviation = new float[mIndex];
+		unsigned int index = 0;
 		float result = 0;
 
 		while (index < mIndex)
 		{
-			deviation[index] = mTimeSheet[index] - average;
+			mDeviation[index] = mTimeSheet[index] - average;
 			index++;
 		}
 
@@ -89,19 +102,23 @@ namespace lab3
 
 		while (index < mIndex)
 		{
-			result += powf(deviation[index], 2);
+			result += powf(mDeviation[index], 2);
 			index++;
 		}
 		result = result / mIndex;
 
-		delete[] deviation;
+		if (index == 0)
+		{
+			return 0.0f;
+		}
 
 		return sqrt(result);
 	}
 
 	const std::string& TimeSheet::GetName() const
 	{
-		std::string name = mName;
+		char* name = new char[mSize];
+		memcpy(name, mName, mSize);
 		return name;
 	}
 
@@ -109,5 +126,6 @@ namespace lab3
 	{
 		delete[] mName;
 		delete[] mTimeSheet;
+		delete[] mDeviation;
 	}
 }

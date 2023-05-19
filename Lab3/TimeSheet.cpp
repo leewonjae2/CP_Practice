@@ -3,7 +3,10 @@
 #include "TimeSheet.h"
 
 namespace lab3
+
+	
 {
+
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
 		: mSize(strlen(name) + 1)
 		, mMaxEntries(maxEntries)
@@ -115,6 +118,23 @@ namespace lab3
 	const std::string& TimeSheet::GetName() const
 	{
 		return mName;
+	}
+
+	TimeSheet TimeSheet::operator=(const TimeSheet& other)
+	{
+		TimeSheet result;
+		result.mSize = other.mSize;
+		mMaxEntries = other.mMaxEntries;
+		mIndex = other.mIndex;
+		mName = other.GetName();
+		
+		mTimeSheet = new int[other.mMaxEntries];
+		memcpy(mTimeSheet, other.mTimeSheet, other.mMaxEntries * sizeof(int));
+
+		mDeviation = new float[other.mMaxEntries];
+		memcpy(mDeviation, other.mDeviation, other.mMaxEntries * sizeof(float));
+
+		return result;
 	}
 
 	TimeSheet::~TimeSheet()

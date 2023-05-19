@@ -89,19 +89,20 @@ namespace lab3
 
 		while (index < mIndex)
 		{
-			result += pow(deviation[index], 2);
+			result += powf(deviation[index], 2);
 			index++;
 		}
 		result = result / mIndex;
 
-		delete deviation;
+		delete[] deviation;
 
 		return sqrt(result);
 	}
 
 	const std::string& TimeSheet::GetName() const
 	{
-		return mName;
+		std::string name = mName;
+		return name;
 	}
 
 	TimeSheet::~TimeSheet()

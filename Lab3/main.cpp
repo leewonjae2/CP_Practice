@@ -5,7 +5,7 @@ int main()
 {
 	using namespace std;
 	lab3::TimeSheet p("Pope", 10);
-	
+
 	p.AddTime(4);
 	p.AddTime(7);
 	p.AddTime(6);

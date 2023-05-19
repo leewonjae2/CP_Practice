@@ -30,7 +30,7 @@ namespace lab3
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-		if (timeInHours<=10 && timeInHours>=1 && mIndex < mMaxEntries) {
+		if (timeInHours <= 10 && timeInHours >= 1 && mIndex < mMaxEntries) {
 			mTimeSheet[mIndex] = timeInHours;
 			mIndex++;
 		}
@@ -48,7 +48,7 @@ namespace lab3
 	{
 		int result = 0;
 		int index = 0;
-		
+
 		while (index < mIndex)
 		{
 			result += mTimeSheet[index];
@@ -68,8 +68,8 @@ namespace lab3
 			result += mTimeSheet[index];
 			index++;
 		}
-		
-		return result/mIndex;
+
+		return result / mIndex;
 	}
 
 	float TimeSheet::GetStandardDeviation() const
@@ -89,7 +89,7 @@ namespace lab3
 
 		while (index < mIndex)
 		{
-			result += pow(deviation[index],2);
+			result += pow(deviation[index], 2);
 			index++;
 		}
 		result = result / mIndex;

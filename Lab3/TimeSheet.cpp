@@ -21,7 +21,7 @@ namespace lab3
 	TimeSheet::TimeSheet(const TimeSheet& other)
 		: mSize(other.mSize)
 		, mMaxEntries(other.mMaxEntries)
-		, mIndex(0)
+		, mIndex(other.mIndex)
 		, mName(other.GetName())
 	{
 		mTimeSheet = new int[other.mMaxEntries];

@@ -18,7 +18,7 @@ namespace lab3
 		~TimeSheet();
 
 	private:
-		char* mName;
+		std::string mName;
 		size_t mSize;
 		unsigned int mMaxEntries;
 		int* mTimeSheet;

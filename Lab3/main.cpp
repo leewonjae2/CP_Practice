@@ -5,12 +5,9 @@ int main()
 {
 	using namespace std;
 	lab3::TimeSheet p("Pope", 10);
+	
 
-
-	string a = p.GetName();
-
-
-	cout << a << endl;
+	cout << p.GetName()  << endl;
 
 	return 0;
 }

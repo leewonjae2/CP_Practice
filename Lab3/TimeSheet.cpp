@@ -1,5 +1,4 @@
 #include <cmath>
-#include <string>
 
 #include "TimeSheet.h"
 
@@ -9,9 +8,9 @@ namespace lab3
 		: mSize(strlen(name) + 1)
 		, mMaxEntries(maxEntries)
 		, mIndex(0)
+		, mName(name)
 	{
-		mName = new char[mSize];
-		memcpy(mName, name, mSize);
+		
 
 		mTimeSheet = new int[mMaxEntries];
 
@@ -23,15 +22,15 @@ namespace lab3
 		: mSize(other.mSize)
 		, mMaxEntries(other.mMaxEntries)
 		, mIndex(0)
+		, mName(other.mName)
 	{
-		mName = new char[mSize];
-		memcpy(mName, other.mName, mSize);
+		
 
 		mTimeSheet = new int[mMaxEntries];
-		memcpy(mTimeSheet, other.mTimeSheet, mMaxEntries);
+		memcpy(mTimeSheet, other.mTimeSheet, mMaxEntries * sizeof(int));
 
 		mDeviation = new float[mMaxEntries];
-		memcpy(mDeviation, other.mDeviation, mMaxEntries);
+		memcpy(mDeviation, other.mDeviation, mMaxEntries * sizeof(int));
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
@@ -117,14 +116,12 @@ namespace lab3
 
 	const std::string& TimeSheet::GetName() const
 	{
-		char* name = new char[mSize];
-		memcpy(name, mName, mSize);
-		return name;
+		
+		return mName;
 	}
 
 	TimeSheet::~TimeSheet()
 	{
-		delete[] mName;
 		delete[] mTimeSheet;
 		delete[] mDeviation;
 	}

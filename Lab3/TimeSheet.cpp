@@ -22,15 +22,13 @@ namespace lab3
 		: mSize(other.mSize)
 		, mMaxEntries(other.mMaxEntries)
 		, mIndex(0)
-		, mName(other.mName)
+		, mName(other.GetName())
 	{
-		
+		mTimeSheet = new int[other.mMaxEntries];
+		memcpy(mTimeSheet, other.mTimeSheet, other.mMaxEntries * sizeof(int));
 
-		mTimeSheet = new int[mMaxEntries];
-		memcpy(mTimeSheet, other.mTimeSheet, mMaxEntries * sizeof(int));
-
-		mDeviation = new float[mMaxEntries];
-		memcpy(mDeviation, other.mDeviation, mMaxEntries * sizeof(int));
+		mDeviation = new float[other.mMaxEntries];
+		memcpy(mDeviation, other.mDeviation, other.mMaxEntries * sizeof(float));
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
@@ -116,7 +114,6 @@ namespace lab3
 
 	const std::string& TimeSheet::GetName() const
 	{
-		
 		return mName;
 	}
 

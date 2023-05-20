@@ -119,31 +119,37 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
-		unsigned int sSize = 0;
+		int sSize = 0;
 		bool same = false;
 		int index = -1;
-		unsigned int i = 0;
+		int i = 0;
 
-		while (s[sSize] != '\0')
+		while (s[sSize] != '\0')	
 		{
 			sSize++;
 		}
 
-		for (i = 0; i < mSize - sSize && same == false; i++)
+		if (sSize == 0)
+		{
+			return 0;
+		}
+
+
+		while (i <= mSize - sSize && same == false)
 		{
 			if (s[0] == mString[i])
 			{
 				same = true;
-				for (unsigned int j = i + 1; j < i + sSize; j++)
+				for (int j = i + 1; j < i + sSize && same == true; j++)
 				{
 					if (s[j - i] != mString[j])
 					{
 						same = false;
-						break;
 					}
 
 				}
 			}
+			i++;
 		}
 
 		if (same == true)
@@ -155,36 +161,41 @@ namespace assignment1
 
 	int MyString::LastIndexOf(const char* s)
 	{
-		unsigned int sSize = 0;
+		int sSize = 0;
 		bool same = false;
 		int index = -1;
-		unsigned int i = 0;
+		int i = 0;
 
 		while (s[sSize] != '\0')
 		{
 			sSize++;
 		}
-
-		for (i = mSize - 1; i >= sSize && same == false; i--)
+		if (sSize == 0)
 		{
-			if (s[sSize - 1] == mString[i])
+			return mSize;
+		}
+
+
+		for (i = 1; i <= mSize && same == false; i++)
+		{
+			if (s[sSize - 1] == mString[mSize - i])
 			{
 				same = true;
-				for (unsigned int j = 2; j <= sSize; j++)
+				for (int j = 2; j <= sSize && same == true; j++)
 				{
-					if (s[sSize - j] != mString[i - j + 1])
+					if (s[sSize - j] != mString[mSize - i - j + 1])
 					{
 						same = false;
-						break;
 					}
 
 				}
 			}
 		}
+		i--;
 
 		if (same == true)
 		{
-			index = i - sSize + 2;
+				index = mSize - i - (sSize - 1);
 		}
 		return index;
 	}
@@ -220,7 +231,7 @@ namespace assignment1
 				mString[i * 2] = temp[i];
 				mString[i * 2 + 1] = s[i];
 			}
-			for (unsigned int i = mSize; i < mSize + sSize; i++)
+			for (unsigned int i = mSize; i < sSize; i++)
 			{
 				mString[i + mSize] = s[i];
 			}

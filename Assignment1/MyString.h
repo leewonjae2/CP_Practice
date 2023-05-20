@@ -29,6 +29,6 @@ namespace assignment1
 
 	private:
 		char* mString;
-		unsigned int mSize;
+		int mSize;
 	};
 }

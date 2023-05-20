@@ -45,7 +45,7 @@ namespace assignment1
 
 	const char* MyString::GetCString() const
 	{
-		char* s = new char[mSize + 1];
+		/*char* s = new char[mSize + 1];
 
 		for (unsigned int i = 0; i < mSize; i++)
 		{
@@ -53,7 +53,8 @@ namespace assignment1
 		}
 		s[mSize] = '\0';
 
-		return s;
+		return s;*/
+		return mString;
 	}
 
 	void MyString::Append(const char* s)

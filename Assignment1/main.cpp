@@ -19,6 +19,7 @@ int main()
 	p1 = p1;
 	
 	cout << p1.GetCString() << endl;
+	cout << p2.GetCString() << endl;
 
 	return 0;
 }

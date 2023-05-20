@@ -16,7 +16,7 @@ namespace assignment1
 		}
 		mString = new char[mSize + 1];
 
-		for (unsigned int i = 0; i < mSize+1; i++)
+		for (unsigned int i = 0; i < mSize + 1; i++)
 		{
 			mString[i] = s[i];
 		}
@@ -117,7 +117,7 @@ namespace assignment1
 		int index = -1;
 		unsigned int i = 0;
 
-		while (s[sSize] != '\0')	
+		while (s[sSize] != '\0')
 		{
 			sSize++;
 		}
@@ -195,7 +195,7 @@ namespace assignment1
 
 		if (same == true)
 		{
-				index = mSize - i - sSize + 1;
+			index = mSize - i - sSize + 1;
 		}
 		return index;
 	}
@@ -405,7 +405,7 @@ namespace assignment1
 		{
 			mString[i] = temp2[i];
 		}
-		
+
 
 		delete[] temp1;
 

@@ -110,7 +110,7 @@ namespace lab4
 				}
 			}
 
-			if (min_x == max_x || min_y == max_y)
+			if (min_x == max_x && min_y == max_y)
 			{
 				return false;
 			}
@@ -118,8 +118,8 @@ namespace lab4
 			Point minPoint(min_x, min_y);
 			Point maxPoint(max_x, max_y);
 
-			*outMin = *outMin - *outMin + minPoint;
-			*outMax = *outMax - *outMax + maxPoint;
+			*outMin = minPoint;
+			*outMax = maxPoint;
 
 			return true;
 

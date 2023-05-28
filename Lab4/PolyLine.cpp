@@ -5,38 +5,38 @@
 namespace lab4
 {
 	PolyLine::PolyLine()
-		: max(0)
+		: mSize(0)
 	{
 		for (unsigned int i = 0; i < 10; i++)
 		{
-			list[i] = NULL;
+			mList[i] = NULL;
 		}
 	}
 
 	PolyLine::PolyLine(const PolyLine& other)
-		: max(other.max)
+		: mSize(other.mSize)
 	{
-		for (unsigned int i = 0; i < max; i++)
+		for (unsigned int i = 0; i < mSize; i++)
 		{
-			list[i] = other.list[i];
+			mList[i] = new Point(other.mList[i]->GetX(), other.mList[i]->GetY());
 		}
 
 	}
 
 	PolyLine::~PolyLine()
 	{
-		for (unsigned int i = 0; i < max; i++)
+		for (unsigned int i = 0; i < mSize; i++)
 		{
-			delete list[i];
+			delete mList[i];
 		}
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
-		if (max < 10)
+		if (mSize < 10)
 		{
-			list[max] = new Point(x, y);
-			max++;
+			mList[mSize] = new Point(x, y);
+			mSize++;
 
 			return true;
 		}
@@ -45,10 +45,10 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		if (max < 10)
+		if (mSize < 10)
 		{
-			list[max] = point;
-			max++;
+			mList[mSize] = point;
+			mSize++;
 
 			return true;
 		}
@@ -57,16 +57,15 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		if (i < max)
+		if (i < mSize)
 		{
-			delete list[i];
-			for (unsigned int index = i; index < max - 1; index++)
+			delete mList[i];
+			for (unsigned int index = i; index < mSize - 1; index++)
 			{
-				list[index] = list[index + 1];
+				mList[index] = mList[index + 1];
 			}
-			max--;
-			delete list[max];
-			list[max] = NULL;
+			mSize--;
+			mList[mSize] = NULL;
 
 			return true;
 		}
@@ -81,33 +80,33 @@ namespace lab4
 		float max_x;
 		float max_y;
 
-		if (max > 1)
+		if (mSize > 1)
 		{
-			min_x = list[0]->GetX();
-			min_y = list[0]->GetY();
+			min_x = mList[0]->GetX();
+			min_y = mList[0]->GetY();
 			max_x = min_x;
 			max_y = min_y;
 
-			for (unsigned int i = 1; i < max; i++)
+			for (unsigned int i = 1; i < mSize; i++)
 			{
-				if (min_x > list[i]->GetX())
+				if (min_x > mList[i]->GetX())
 				{
-					min_x = list[i]->GetX();
+					min_x = mList[i]->GetX();
 				}
 
-				if (min_y > list[i]->GetY())
+				if (min_y > mList[i]->GetY())
 				{
-					min_y = list[i]->GetY();
+					min_y = mList[i]->GetY();
 				}
 
-				if (max_x < list[i]->GetX())
+				if (max_x < mList[i]->GetX())
 				{
-					max_x = list[i]->GetX();
+					max_x = mList[i]->GetX();
 				}
 
-				if (max_y < list[i]->GetY())
+				if (max_y < mList[i]->GetY())
 				{
-					max_y = list[i]->GetY();
+					max_y = mList[i]->GetY();
 				}
 			}
 
@@ -115,10 +114,12 @@ namespace lab4
 			{
 				return false;
 			}
-			delete outMin;
-			delete outMax;
-			outMin = new Point(min_x, min_y);
-			outMax = new Point(max_x, max_y);
+
+			Point minPoint(min_x, min_y);
+			Point maxPoint(max_x, max_y);
+
+			*outMin = *outMin - *outMin + minPoint;
+			*outMax = *outMax - *outMax + maxPoint;
 
 			return true;
 
@@ -129,6 +130,25 @@ namespace lab4
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		return list[i];
+		if (i < mSize)
+		{
+			return mList[i];
+		}
+		return NULL;
+	}
+
+	void PolyLine::operator=(const PolyLine& rhs)
+	{
+		mSize = rhs.mSize;
+		const Point* temp;
+
+		for (unsigned int i = 0; i < mSize; i++)
+		{
+			temp = mList[i];
+			mList[i] = new Point(rhs.mList[i]->GetX(), rhs.mList[i]->GetY());
+			delete temp;
+		}
+
+
 	}
 }

@@ -17,8 +17,9 @@ namespace lab4
 		bool TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const;
 
 		const Point* operator[](unsigned int i) const;
+		void operator=(const PolyLine& rhs);
 	private:
-		const Point* list[10];
-		unsigned int max;
+		const Point* mList[10];
+		unsigned int mSize;
 	};
 }

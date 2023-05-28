@@ -4,21 +4,24 @@
 #include "PolyLine.h"
 
 
-using namespace lab4;
 using namespace std;
-
+using namespace lab4;
 int main()
 {
-	
-	
 	PolyLine pl;
-	pl.AddPoint(1.0f, 2.0f);
-	pl.AddPoint(new Point(2.0f, 3.0f));
-	pl.AddPoint(2.2f, 1.9f);
 
-	cout << pl.RemovePoint(1) << endl; // pl은 [1.0f, 2.0f], [2.2f, 1.9f]. true를 반환.
+	pl.AddPoint(1, 2);
+	pl.AddPoint(-4, 3);
+	pl.AddPoint(5, 5);
+	pl.AddPoint(3, -1);
 
-	cout << pl.RemovePoint(2) << endl; // 4번째 점이 존재하지 않기 때문에 pl은 변하지 않음. false를 반환.
+	pl = pl;
+
+	cout << pl[0]->GetX() << ", " << pl[0]->GetY() << endl;
+	cout << pl[1]->GetX() << ", " << pl[1]->GetY() << endl;
+	cout << pl[2]->GetX() << ", " << pl[2]->GetY() << endl;
+	cout << pl[3]->GetX() << ", " << pl[3]->GetY() << endl;
 
 	return 0;
+
 }

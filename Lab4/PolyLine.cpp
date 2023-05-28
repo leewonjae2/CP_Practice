@@ -25,10 +25,7 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
-		for (unsigned int i = 0; i < mSize; i++)
-		{
-			delete mList[i];
-		}
+		delete[] mList;
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
@@ -80,41 +77,38 @@ namespace lab4
 		float max_x;
 		float max_y;
 
-		if (mSize > 1)
+
+		if (mSize > 0)
 		{
 			min_x = mList[0]->GetX();
 			min_y = mList[0]->GetY();
 			max_x = min_x;
 			max_y = min_y;
-
-			for (unsigned int i = 1; i < mSize; i++)
+			if (mSize > 1)
 			{
-				if (min_x > mList[i]->GetX())
+				for (unsigned int i = 1; i < mSize; i++)
 				{
-					min_x = mList[i]->GetX();
-				}
+					if (min_x > mList[i]->GetX())
+					{
+						min_x = mList[i]->GetX();
+					}
 
-				if (min_y > mList[i]->GetY())
-				{
-					min_y = mList[i]->GetY();
-				}
+					if (min_y > mList[i]->GetY())
+					{
+						min_y = mList[i]->GetY();
+					}
 
-				if (max_x < mList[i]->GetX())
-				{
-					max_x = mList[i]->GetX();
-				}
+					if (max_x < mList[i]->GetX())
+					{
+						max_x = mList[i]->GetX();
+					}
 
-				if (max_y < mList[i]->GetY())
-				{
-					max_y = mList[i]->GetY();
+					if (max_y < mList[i]->GetY())
+					{
+						max_y = mList[i]->GetY();
+					}
 				}
 			}
-
-			if (min_x == max_x && min_y == max_y)
-			{
-				return false;
-			}
-
 			Point minPoint(min_x, min_y);
 			Point maxPoint(max_x, max_y);
 

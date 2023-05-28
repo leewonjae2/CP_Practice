@@ -1,40 +1,26 @@
+#include <cassert>
+#include <cmath>
 #include <iostream>
 
 #include "Point.h"
 #include "PolyLine.h"
 
-using namespace std;
 using namespace lab4;
-
-void doSomething()
-{
-	PolyLine pl1;
-	PolyLine pl2;
-
-	pl1.AddPoint(1.0f, 2.0f);
-	pl1.AddPoint(3.0f, 2.0f);
-
-	pl2.AddPoint(5.1f, 1.0f);
-	pl2.AddPoint(1.0f, 5.0f);
-
-	pl1 = pl2;
-}
-
-void doNothing()
-{
-	PolyLine pl1;
-
-	pl1.AddPoint(1.0f, 2.0f);
-	pl1.AddPoint(3.0f, 2.0f);
-
-	pl1 = pl1;
-}
+using namespace std;
 
 int main()
 {
-	doSomething();
-	doNothing();
+	PolyLine pl;
+	pl.AddPoint(1.4f, 2.8f);
+	pl.AddPoint(1.4f, 2.5f);
+
+	Point minP(0.f, 0.f);
+	Point maxP(0.f, 0.f);
+
+	pl.TryGetMinBoundingRectangle(&minP, &maxP); // min: [-2.9f, -1.0f], max: [6.2f, 5.5f]
+
+	cout << minP.GetX()<< ", " << minP.GetY() << endl;
+	cout << maxP.GetX() << ", " << maxP.GetY() << endl;
 
 	return 0;
-
 }

@@ -25,7 +25,10 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
-		delete[] mList;
+		for (unsigned int i = 0; i < mSize; i++)
+		{
+			delete mList[i];
+		}
 	}
 
 	bool PolyLine::AddPoint(float x, float y)

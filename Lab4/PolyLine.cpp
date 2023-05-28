@@ -62,11 +62,11 @@ namespace lab4
 			delete list[i];
 			for (unsigned int index = i; index < max - 1; index++)
 			{
-				list[i] = list[i + 1];
+				list[index] = list[index + 1];
 			}
-			delete list[max];
-
 			max--;
+			delete list[max];
+			list[max] = NULL;
 
 			return true;
 		}

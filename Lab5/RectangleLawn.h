@@ -8,6 +8,7 @@ namespace lab5
 	class RectangleLawn : public Lawn, public IFenceable
 	{
 	public:
+		RectangleLawn();
 		unsigned int GetArea() const;
 		unsigned int GetFencePrice(eFenceType fenceType) const;
 		unsigned int GetMinimumFencesCount() const;

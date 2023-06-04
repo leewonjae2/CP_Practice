@@ -1,7 +1,8 @@
 #pragma once
 #include "Lawn.h"
 
-namespace lab5 {
+namespace lab5
+{
 	class CircleLawn : public Lawn
 	{
 	public:

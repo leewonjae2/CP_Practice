@@ -2,6 +2,11 @@
 
 namespace lab5
 {
+	RectangleLawn::RectangleLawn()
+		: mX(0)
+		, mY(0)
+	{
+	}
 	RectangleLawn::RectangleLawn(unsigned int x, unsigned int y)
 		: mX(x)
 		, mY(y)

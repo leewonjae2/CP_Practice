@@ -12,6 +12,8 @@ namespace lab5
 
 	unsigned int Lawn::GetGrassPrice(eGrassType grassType) const
 	{
+		int price;
+		double d_price;
 		switch (grassType)
 		{
 		case lab5::BERMUDA:
@@ -24,10 +26,10 @@ namespace lab5
 			return static_cast<unsigned int>(3 * GetArea());
 			break;
 		case lab5::PERENNIAL_RYEGRASS:
-			return static_cast<unsigned int>(2.5 * GetArea());
+			return static_cast<unsigned int>(2.5 * GetArea() + 0.5);
 			break;
 		case lab5::ST_AUGUSTINE:
-			return static_cast<unsigned int>(4.5 * GetArea());
+			return static_cast<unsigned int>(4.5 * GetArea() + 0.5);
 			break;
 		default:
 			break;

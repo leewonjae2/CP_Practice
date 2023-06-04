@@ -11,7 +11,7 @@ namespace lab5
 		SquareLawn(unsigned int x);
 		virtual ~SquareLawn();
 		unsigned int GetArea() const;
-		unsigned int GetminimumFencesCount() const;
+		unsigned int GetMinimumFencesCount() const;
 		unsigned int GetFencePrice(eFenceType fenceType) const;
 
 	private:

@@ -11,7 +11,7 @@ using namespace lab5;
 
 int main()
 {
-	Lawn* lawn = new RectangleLawn(10, 20);
+	Lawn* lawn = new SquareLawn(10, 20);
 	int area = lawn->GetArea();
 	int grassPrice = lawn->GetGrassPrice(BERMUDA);
 	int sodRollsCount = lawn->GetMinimumSodRollsCount();
@@ -20,7 +20,7 @@ int main()
 	assert(grassPrice == 1600);
 	assert(sodRollsCount == 667);
 
-	RectangleLawn* rectangleLawn = (RectangleLawn*)lawn;
+	SquareLawn* rectangleLawn = (SquareLawn*)lawn;
 
 	int fencePrice = rectangleLawn->GetFencePrice(RED_CEDAR);
 	int fencesCount = rectangleLawn->GetMinimumFencesCount();

@@ -16,7 +16,7 @@ namespace lab5
 		return mX * mX;
 	}
 
-	unsigned int SquareLawn::GetminimumFencesCount() const
+	unsigned int SquareLawn::GetMinimumFencesCount() const
 	{
 		return mX * 4 * 4;;
 	}

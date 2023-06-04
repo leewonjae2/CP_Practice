@@ -12,8 +12,6 @@ namespace lab5
 
 	unsigned int Lawn::GetGrassPrice(eGrassType grassType) const
 	{
-		int price;
-		double d_price;
 		switch (grassType)
 		{
 		case lab5::BERMUDA:

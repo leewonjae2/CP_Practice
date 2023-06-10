@@ -14,7 +14,6 @@ namespace assignment2
 		bool AddVehicle(Vehicle* vehicle);
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
-		const Vehicle* GetFurthestTravelled() const;
 	private:
 		static bool mExist;
 		static DeusExMachina* mInstance;

@@ -40,13 +40,12 @@ namespace assignment2
 
 	bool DeusExMachina::RemoveVehicle(unsigned int i)
 	{
-
+		
 		if (mVehicleCount == 0)
 		{
 			return false;
 		}
-
-		if (i < mVehicleCount)
+		if (i < mVehicleCount - 1)
 		{
 			delete mVehicle[i];
 			for (unsigned int j = i; j < mVehicleCount - 1; j++)
@@ -56,8 +55,17 @@ namespace assignment2
 			mVehicleCount--;
 			return true;
 		}
+		else if (i == mVehicleCount - 1)
+		{
+			delete mVehicle[i];
+			mVehicleCount--;
+		}
 		return false;
 	}
+
+		
+
+		
 
 	const Vehicle* DeusExMachina::GetFurthestTravelled() const
 	{

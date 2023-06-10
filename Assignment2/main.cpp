@@ -19,10 +19,13 @@ int main()
 	Person* p1 = new Person("P1",85 );
 	Person* p2 = new Person("P2", 70);
 
-	Sedan sedan1;
+	Boat boat = Boat(5);
+	
+	boat.AddPassenger(p1);
+	boat.AddPassenger(p2);
 
-	Trailer *trailer = new Trailer(150);
+	cout << boat.GetSailSpeed();
 
-	cout << sedan1.AddTrailer(new Trailer(150)) << endl;
+	return 0;
 
 }

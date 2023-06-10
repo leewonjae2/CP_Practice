@@ -19,7 +19,7 @@ namespace assignment2
 	unsigned int UBoat::GetSailSpeed() const
 	{
 		double totalWeight = 0;
-		unsigned int result = 20;
+		int result = 20;
 
 		if (GetPassengersCount() > 0)
 		{
@@ -28,10 +28,10 @@ namespace assignment2
 				totalWeight += static_cast<double>(GetPassenger(i)->GetWeight());
 			}
 		}
-		result = static_cast<unsigned int>(500.0 - (totalWeight / 10.0) + 0.5);
+		result = static_cast<int>(500.0 - (totalWeight / 10.0) + 0.5);
 		if (200 < result)
 		{
-			return result;
+			return static_cast<unsigned int>(result);
 		}
 
 		return 200;

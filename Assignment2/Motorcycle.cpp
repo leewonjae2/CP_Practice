@@ -18,7 +18,7 @@ namespace assignment2
 
 	unsigned int Motorcycle::GetDriveSpeed() const
 	{
-		unsigned int result = 0;
+		int result = 0;
 		double totalWeight = 0;
 
 		for (unsigned int i = 0; i < GetPassengersCount(); i++)
@@ -27,12 +27,12 @@ namespace assignment2
 		}
 
 
-		result = static_cast<unsigned int>(totalWeight * 2.0 + 400.0 - pow(totalWeight / 15, 3) + 0.5);
+		result = static_cast<int>(totalWeight * 2.0 + 400.0 - pow(totalWeight / 15, 3) + 0.5);
 
 
 		if (0 < result)
 		{
-			return result;
+			return static_cast<unsigned int>(result);
 		}
 
 		return 0;

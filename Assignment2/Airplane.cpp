@@ -39,7 +39,7 @@ namespace assignment2
 			totalWeight += static_cast<double>(GetPassenger(i)->GetWeight());
 		}
 
-		return static_cast<unsigned int>(((double)4 * exp(((double)400 - totalWeight) / (double)70)) + 0.5);
+		return static_cast<unsigned int>((4.0 * exp((400.0 - totalWeight) / 70.0)) + 0.5);
 	}
 
 	unsigned int Airplane::GetFlySpeed() const
@@ -52,7 +52,7 @@ namespace assignment2
 			totalWeight += static_cast<double>(GetPassenger(i)->GetWeight());
 		}
 
-		return static_cast<unsigned int>(((double)200 * exp(((double)800 - totalWeight) / (double)500)) + 0.5);
+		return static_cast<unsigned int>((200.0 * exp((800.0 - totalWeight) / 500.0)) + 0.5);
 	}
 
 	void Airplane::Travel()

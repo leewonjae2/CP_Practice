@@ -4,7 +4,7 @@
 namespace assignment2
 {
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
-		:Vehicle(maxPassengersCount)
+		: Vehicle(maxPassengersCount)
 	{
 	}
 
@@ -39,7 +39,7 @@ namespace assignment2
 			}
 		}
 
-		result = static_cast<unsigned int>((double)150 * exp(((double)500 - totalWeight) / (double)300) + 0.5);
+		result = static_cast<unsigned int>(150.0 * exp((500.0 - totalWeight) / 300.0) + 0.5);
 
 		return result;
 	}
@@ -58,7 +58,7 @@ namespace assignment2
 			}
 		}
 
-		result = static_cast<unsigned int>(((double)800 - totalWeight * 1.7) + 0.5);
+		result = static_cast<unsigned int>((800.0 - totalWeight * 1.7) + 0.5);
 
 		if (20 < result)
 		{

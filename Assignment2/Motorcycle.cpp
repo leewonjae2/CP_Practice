@@ -27,7 +27,7 @@ namespace assignment2
 		}
 
 
-		result = static_cast<unsigned int>(totalWeight * (double)2 + 400 - pow(totalWeight / 15, 3) + 0.5);
+		result = static_cast<unsigned int>(totalWeight * 2.0 + 400.0 - pow(totalWeight / 15, 3) + 0.5);
 
 
 		if (0 < result)

@@ -27,7 +27,7 @@ namespace assignment2
 				totalWeight += static_cast<double>(GetPassenger(i)->GetWeight());
 			}
 		}
-		result = static_cast<unsigned int>((double)800 - (totalWeight * (double)10) + 0.5);
+		result = static_cast<unsigned int>(800.0 - (totalWeight * 10.0) + 0.5);
 		if (20 < result)
 		{
 			return result;

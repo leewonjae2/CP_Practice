@@ -59,6 +59,7 @@ namespace assignment2
 		{
 			delete mVehicle[i];
 			mVehicleCount--;
+			return true;
 		}
 		return false;
 	}

@@ -73,10 +73,25 @@ void Test()
 	
 }
 
-
-int main()
+void Test1()
 {
-	Test();
+	DeusExMachina* d = DeusExMachina::GetInstance();
 
-	return 0;
+	for (unsigned int i = 0; i < 11; i++)
+	{
+		cout << d->AddVehicle(new Boat(5)) << endl;
+	}
+
+	for (unsigned int index = 10; index > 0; index--)
+	{
+		cout << d->RemoveVehicle(index) << endl;
+	}
+	delete d;
+}
+
+void main()
+{
+	Test1();
+
+	return ;
 }

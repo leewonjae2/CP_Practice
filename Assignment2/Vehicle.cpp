@@ -1,0 +1,184 @@
+#include "Vehicle.h"
+#include "DeusExMachina.h"
+
+namespace assignment2
+{
+
+	Vehicle* Vehicle::mFurthestTravelled = NULL;
+
+
+	Vehicle::Vehicle(unsigned int maxPassengersCount)
+		: mMaxPassengerCount(maxPassengersCount)
+		, mPassengerCount(0)
+		, mDistance(0)
+		, mTravelCount(0)
+	{
+		mPassenger = new const Person * [mMaxPassengerCount];
+		for (unsigned int i = 0; i < mMaxPassengerCount; i++)
+		{
+			mPassenger[i] = NULL;
+		}
+	}
+
+	Vehicle::Vehicle(Vehicle& other)
+		: mMaxPassengerCount(other.mMaxPassengerCount)
+		, mPassengerCount(other.mPassengerCount)
+		, mDistance(other.mDistance)
+		, mTravelCount(other.mTravelCount)
+	{
+		const Person** temp = mPassenger;
+		unsigned int nameSize;
+
+		mPassenger = new const Person * [mMaxPassengerCount];
+
+		for (unsigned int i = 0; i < mMaxPassengerCount; i++)
+		{
+			nameSize = temp[i]->GetName().length();
+			char* tempName = new char[nameSize + 1];
+
+			for (unsigned int j = 0; j <= nameSize; j++)
+			{
+				tempName[j] = temp[i]->GetName()[j];
+			}
+			mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
+			delete[] tempName;
+		}
+		delete[] temp;
+	}
+
+	Vehicle::~Vehicle()
+	{
+		for (unsigned int i = 0; i < mPassengerCount; i++)
+		{
+			delete mPassenger[i];
+		}
+		delete[] mPassenger;
+	}
+
+	void Vehicle::Travel()
+	{
+		mDistance += GetMaxSpeed();
+		mTravelCount++;
+		if (mFurthestTravelled->GetDistance() < mDistance)
+		{
+			mFurthestTravelled = this;
+		}
+	}
+
+	void Vehicle::TravelCounting()
+	{
+		mTravelCount++;
+	}
+
+	void Vehicle::ResetCounting()
+	{
+		mTravelCount = 0;
+	}
+
+	unsigned int Vehicle::GetTravelCount()
+	{
+		return mTravelCount;
+	}
+
+	unsigned int Vehicle::GetDistance()
+	{
+		return mDistance;
+	}
+
+	const Vehicle* Vehicle::GetFurthestTravelled()
+	{
+		return mFurthestTravelled;
+	}
+
+	void Vehicle::SetFurthestTravelled()
+	{
+		mFurthestTravelled = this;
+	}
+
+	bool Vehicle::ResetPassenger()
+	{
+		for (unsigned int i = 0; i < mPassengerCount; i++)
+		{
+			mPassenger[i] = NULL;
+		}
+		mPassengerCount = 0;
+
+		return true;
+	}
+
+	bool Vehicle::AddPassenger(const Person* person)
+	{
+		if (mPassengerCount < mMaxPassengerCount)
+		{
+			mPassenger[mPassengerCount] = person;
+			mPassengerCount++;
+
+			return true;
+		}
+		return false;
+	}
+
+	bool Vehicle::RemovePassenger(unsigned int i)
+	{
+		if (i >= mPassengerCount)
+		{
+			return false;
+		}
+
+		delete mPassenger[i];
+
+		for (; i < mPassengerCount; i++)
+		{
+			mPassenger[i] = mPassenger[i + 1];
+		}
+
+		mPassengerCount--;
+
+		return true;
+	}
+
+	unsigned int Vehicle::GetPassengersCount() const
+	{
+		return mPassengerCount;
+	}
+
+	unsigned int Vehicle::GetMaxPassengersCount() const
+	{
+		return mMaxPassengerCount;
+	}
+
+	const Person* Vehicle::GetPassenger(unsigned int i) const
+	{
+		if (i >= mPassengerCount)
+		{
+			return NULL;
+		}
+		return mPassenger[i];
+	}
+
+
+	void Vehicle::operator=(const Vehicle& other)
+	{
+		mMaxPassengerCount = other.mMaxPassengerCount;
+		mPassengerCount = other.mPassengerCount;
+
+		const Person** temp = mPassenger;
+		unsigned int nameSize;
+
+		mPassenger = new const Person * [mMaxPassengerCount];
+
+		for (unsigned int i = 0; i < mMaxPassengerCount; i++)
+		{
+			nameSize = temp[i]->GetName().length();
+			char* tempName = new char[nameSize + 1];
+
+			for (unsigned int j = 0; j <= nameSize; j++)
+			{
+				tempName[j] = temp[i]->GetName()[j];
+			}
+			mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
+			delete[] tempName;
+		}
+		delete[] temp;
+	}
+}

@@ -26,32 +26,31 @@ namespace assignment2
 		, mDistance(other.mDistance)
 		, mTravelCount(other.mTravelCount)
 	{
-		const Person** temp = mPassenger;
+		const Person** temp = other.mPassenger;
+		const Person** temp1 = mPassenger;
 		unsigned int nameSize;
 
 		mPassenger = new const Person * [mMaxPassengerCount];
 
-		for (unsigned int i = 0; i < mMaxPassengerCount; i++)
+		if (mPassengerCount > 0 && mPassengerCount <= mMaxPassengerCount)
 		{
-			nameSize = temp[i]->GetName().length();
-			char* tempName = new char[nameSize + 1];
-
-			for (unsigned int j = 0; j <= nameSize; j++)
+			for (unsigned int i = 0; i < mPassengerCount; i++)
 			{
-				tempName[j] = temp[i]->GetName()[j];
+				nameSize = temp[i]->GetName().length();
+				char* tempName = new char[nameSize + 1];
+
+				for (unsigned int j = 0; j <= nameSize; j++)
+				{
+					tempName[j] = temp[i]->GetName()[j];
+				}
+				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
 			}
-			mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
-			delete[] tempName;
+			delete[] temp1;
 		}
-		delete[] temp;
 	}
 
 	Vehicle::~Vehicle()
 	{
-		for (unsigned int i = 0; i < mPassengerCount; i++)
-		{
-			delete mPassenger[i];
-		}
 		delete[] mPassenger;
 	}
 
@@ -162,23 +161,27 @@ namespace assignment2
 		mMaxPassengerCount = other.mMaxPassengerCount;
 		mPassengerCount = other.mPassengerCount;
 
-		const Person** temp = mPassenger;
+		const Person** temp = other.mPassenger;
+		const Person** temp1 = mPassenger;
 		unsigned int nameSize;
+		
 
 		mPassenger = new const Person * [mMaxPassengerCount];
 
-		for (unsigned int i = 0; i < mMaxPassengerCount; i++)
+		if (mPassengerCount > 0 && mPassengerCount <= mMaxPassengerCount)
 		{
-			nameSize = temp[i]->GetName().length();
-			char* tempName = new char[nameSize + 1];
-
-			for (unsigned int j = 0; j <= nameSize; j++)
+			for (unsigned int i = 0; i < mPassengerCount; i++)
 			{
-				tempName[j] = temp[i]->GetName()[j];
+				nameSize = temp[i]->GetName().length();
+				char* tempName = new char[nameSize + 1];
+
+				for (unsigned int j = 0; j <= nameSize; j++)
+				{
+					tempName[j] = temp[i]->GetName()[j];
+				}
+				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
 			}
-			mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
-			delete[] tempName;
+			delete[] temp1;
 		}
-		delete[] temp;
 	}
 }

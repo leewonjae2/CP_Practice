@@ -52,7 +52,7 @@ namespace assignment2
 		result = static_cast<unsigned int>((500.0 * log(((totalWeight + 150.0) / 150.0)) + 30.0) + 0.5);
 
 
-		return 0;
+		return result;
 	}
 	void UBoat::Travel()
 	{

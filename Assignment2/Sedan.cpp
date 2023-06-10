@@ -99,7 +99,7 @@ namespace assignment2
 				ResetCounting();
 			}
 		}
-		else
+		else if(mTrailer != NULL)
 		{
 			if (count < 5)
 			{

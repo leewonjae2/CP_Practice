@@ -69,12 +69,28 @@ namespace assignment2
 		{
 			return NULL;
 		}
-
+		
 		if (mVehicle[0]->GetDistance() == 0)
 		{
 			return mVehicle[0];
 		}
-		return mVehicle[0]->GetFurthestTravelled();
+		unsigned int maxDistance = 0;
+		unsigned int index = 0;
+		for (unsigned int i = 0; i < mVehicleCount; i++)
+		{
+			if (maxDistance < mVehicle[i]->GetDistance())
+			{
+				maxDistance = mVehicle[i]->GetDistance();
+				index = i;
+			}
+		}
+		
+		return mVehicle[index];
+	}
+
+	Vehicle* DeusExMachina::GetVehicle(unsigned int i)
+	{
+		return mVehicle[i];
 	}
 
 }

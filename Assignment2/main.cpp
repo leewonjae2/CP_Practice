@@ -1,4 +1,6 @@
-#include <cassert>
+﻿#include <cassert>
+#include <iostream>
+#include <iomanip>
 
 #include "Vehicle.h"
 #include "Airplane.h"
@@ -6,78 +8,75 @@
 #include "Boatplane.h"
 #include "Motorcycle.h"
 #include "Sedan.h"
-#include "Trailer.h"
 #include "UBoat.h"
+#include "Trailer.h"
 #include "DeusExMachina.h"
 #include "Person.h"
-#include <iostream>
+
+
+#define STR(name) #name
 
 using namespace assignment2;
 using namespace std;
-int main()
+
+void TestTravel()
 {
-	Airplane airplane1 = Airplane(5);
-	Airplane airplane2 = Airplane(5);
-
-	airplane1.AddPassenger(new Person("ap1", 75));
-	airplane1.AddPassenger(new Person("ap2", 75));
-
-	airplane2.AddPassenger(new Person("ap3", 75));
-	airplane2.AddPassenger(new Person("ap4", 75));
-
-	Boat boat1 = Boat(5);
-	Boat boat2 = Boat(5);
-
-	boat1.AddPassenger(new Person("bp1", 75));
-	boat1.AddPassenger(new Person("bp2", 75));
-
-	boat2.AddPassenger(new Person("bp3", 75));
-	boat2.AddPassenger(new Person("bp4", 75));
-
-
-	Boat bp_b = Boat(5);
-
-	bp_b.AddPassenger(new Person("bpp1", 75));
-	bp_b.AddPassenger(new Person("bpp2", 75));
-
-	Airplane bp_a = Airplane(5);
-
-	bp_a.AddPassenger(new Person("bpp3", 75));
-	bp_a.AddPassenger(new Person("bpp4", 75));
-
-	Boatplane bp1 = bp_a + bp_b;
-	
-
+	Airplane* airplane = new Airplane(0);
+	Boat* boat = new Boat(0);
 	DeusExMachina* deus = DeusExMachina::GetInstance();
 
-	deus->AddVehicle(&boat1);
-	deus->AddVehicle(&boat2);
-	deus->AddVehicle(&airplane1);
-	deus->AddVehicle(&airplane2);
-	deus->AddVehicle(&bp1);
-
-
-	cout << deus->GetFurthestTravelled()->GetPassenger(0)->GetName() << endl;
+	deus->AddVehicle(airplane);
+	deus->AddVehicle(boat);
 
 	deus->Travel();
-	deus->Travel();
-	deus->Travel();
-	deus->Travel();
-	deus->Travel();
-	deus->Travel();
 
-	cout << "boat1 : " << boat1.GetDistance() << endl;
-	cout << "boat2 : " << boat2.GetDistance() << endl;
-	cout << "airplane1 : " << airplane1.GetDistance() << endl;
-	cout << "airplane2 : " << airplane2.GetDistance() << endl;
-	cout << "bp1 : " << bp1.GetDistance() << endl;
+	assert(deus->GetFurthestTravelled() == airplane);
+}
 
-	cout << deus->GetFurthestTravelled()->GetPassenger(0)->GetName() << endl;
+void Test()
+{
+	DeusExMachina* d = DeusExMachina::GetInstance();
 
-	Boat* boat3 = new Boat(boat1);
-	boat1 = boat1;
-	cout << boat1.GetPassenger(0)->GetName();
+	uint32_t traveledDistanceArr[7][13] =
+	{
+		{1213,1213,1213,1213,2426,2426,2426,2426,3639,3639,3639,3639,4852},
+		{ 800, 1600, 1600, 2400, 3200, 3200, 4000, 4800, 4800, 5600, 6400, 6400, 7200},
+		{800, 800, 800, 800, 1600, 1600, 1600, 1600,  2400, 2400, 2400, 2400, 3200 },
+		{400,800,1200,1600,2000,2000,2400,2800,3200,3600,4000,4000,4400 },
+		{480,960,1440,1920,2400,2400,2880,3360,3840,4320,4800,4800,5280},
+		{480,960,1440,1920,2400,2400,2400,2880,3360,3840,4320,4800,4800},
+		{550,1100,1100,1100,1100,1100,1650,2200,2200,2200,2200,2200,2750}
+	};
+
+	Airplane* t1 = new Airplane(2);
+	Boat* t2 = new Boat(2);
+	Boatplane* t3 = new Boatplane(2);
+	Motorcycle* t4 = new Motorcycle();
+	Sedan* t5 = new Sedan();
+	Sedan* t6 = new Sedan();
+	t6->AddTrailer(new Trailer(1));
+	UBoat* t7 = new UBoat();
+
+	Vehicle* vArr[7] = { t1,t2,t3,t4,t5,t6,t7 };
+
+	for (size_t j = 0; j < 7; ++j)
+	{
+		d->AddVehicle(vArr[j]);
+		for (size_t i = 0; i < 13; ++i)
+		{
+			d->Travel();
+			assert(traveledDistanceArr[j][i] == d->GetVehicle(0)->GetDistance());
+		}
+		d->RemoveVehicle(0);
+	}
+	delete d;
+	
+}
+
+
+int main()
+{
+	Test();
 
 	return 0;
-
 }

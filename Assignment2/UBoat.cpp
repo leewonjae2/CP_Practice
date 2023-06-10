@@ -13,8 +13,13 @@ namespace assignment2
 	}
 	unsigned int UBoat::GetMaxSpeed() const
 	{
+		unsigned int maxSpeed = GetSailSpeed();
 
-		return 0;
+		if (maxSpeed < GetDiveSpeed())
+		{
+			maxSpeed < GetDiveSpeed();
+		}
+		return maxSpeed;
 	}
 	unsigned int UBoat::GetSailSpeed() const
 	{
@@ -28,7 +33,7 @@ namespace assignment2
 				totalWeight += static_cast<double>(GetPassenger(i)->GetWeight());
 			}
 		}
-		result = static_cast<int>(500.0 - (totalWeight / 10.0) + 0.5);
+		result = static_cast<int>(550.0 - (totalWeight / 10.0) + 0.5);
 		if (200 < result)
 		{
 			return static_cast<unsigned int>(result);

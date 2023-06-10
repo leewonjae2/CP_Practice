@@ -4,9 +4,6 @@
 namespace assignment2
 {
 
-	Vehicle* Vehicle::mFurthestTravelled = NULL;
-
-
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
 		: mMaxPassengerCount(maxPassengersCount)
 		, mPassengerCount(0)
@@ -58,10 +55,6 @@ namespace assignment2
 	{
 		mDistance += GetMaxSpeed();
 		mTravelCount++;
-		if (mFurthestTravelled->GetDistance() < mDistance)
-		{
-			mFurthestTravelled = this;
-		}
 	}
 
 	void Vehicle::TravelCounting()

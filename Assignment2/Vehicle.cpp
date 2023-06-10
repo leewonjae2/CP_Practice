@@ -77,15 +77,6 @@ namespace assignment2
 		return mDistance;
 	}
 
-	const Vehicle* Vehicle::GetFurthestTravelled()
-	{
-		return mFurthestTravelled;
-	}
-
-	void Vehicle::SetFurthestTravelled()
-	{
-		mFurthestTravelled = this;
-	}
 
 	bool Vehicle::ResetPassenger()
 	{

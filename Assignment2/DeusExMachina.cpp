@@ -31,10 +31,6 @@ namespace assignment2
 
 		if (mVehicleCount < 10)
 		{
-			if (mVehicleCount == 0)
-			{
-				vehicle->SetFurthestTravelled();
-			}
 			mVehicle[mVehicleCount] = vehicle;
 			mVehicleCount++;
 			return true;

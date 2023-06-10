@@ -18,6 +18,7 @@ namespace assignment2
 		if (maxSpeed < GetDiveSpeed())
 		{
 			maxSpeed < GetDiveSpeed();
+			maxSpeed = GetDiveSpeed();
 		}
 		return maxSpeed;
 	}

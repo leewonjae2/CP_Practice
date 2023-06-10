@@ -65,7 +65,7 @@ namespace assignment2
 		{
 			return NULL;
 		}
-		
+
 		if (mVehicle[0]->GetDistance() == 0)
 		{
 			return mVehicle[0];
@@ -80,7 +80,7 @@ namespace assignment2
 				index = i;
 			}
 		}
-		
+
 		return mVehicle[index];
 	}
 

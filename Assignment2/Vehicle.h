@@ -19,7 +19,7 @@ namespace assignment2
 		unsigned int GetDistance();
 		const Vehicle* GetFurthestTravelled();
 		void SetFurthestTravelled();
-		
+
 		bool ResetPassenger();
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);

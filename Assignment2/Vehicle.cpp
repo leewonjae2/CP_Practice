@@ -148,7 +148,7 @@ namespace assignment2
 		const Person** temp = other.mPassenger;
 		const Person** temp1 = mPassenger;
 		unsigned int nameSize;
-		
+
 
 		mPassenger = new const Person * [mMaxPassengerCount];
 

@@ -78,8 +78,10 @@ namespace assignment2
 		{
 			return mVehicle[0];
 		}
+
 		unsigned int maxDistance = 0;
 		unsigned int index = 0;
+
 		for (unsigned int i = 0; i < mVehicleCount; i++)
 		{
 			if (maxDistance < mVehicle[i]->GetDistance())

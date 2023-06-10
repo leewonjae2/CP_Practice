@@ -17,8 +17,7 @@ namespace assignment2
 		void ResetCounting();
 		unsigned int GetTravelCount();
 		unsigned int GetDistance();
-		const Vehicle* GetFurthestTravelled();
-		void SetFurthestTravelled();
+
 
 		bool ResetPassenger();
 		bool AddPassenger(const Person* person);

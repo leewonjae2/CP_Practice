@@ -17,14 +17,13 @@ namespace assignment2
 		}
 	}
 
-	Vehicle::Vehicle(Vehicle& other)
+	Vehicle::Vehicle(const Vehicle& other)
 		: mMaxPassengerCount(other.mMaxPassengerCount)
 		, mPassengerCount(other.mPassengerCount)
 		, mDistance(other.mDistance)
 		, mTravelCount(other.mTravelCount)
 	{
 		const Person** temp = other.mPassenger;
-		const Person** temp1 = mPassenger;
 		unsigned int nameSize;
 
 		mPassenger = new const Person * [mMaxPassengerCount];
@@ -42,12 +41,15 @@ namespace assignment2
 				}
 				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
 			}
-			delete[] temp1;
 		}
 	}
 
 	Vehicle::~Vehicle()
 	{
+		for (unsigned int i = 0; i < mPassengerCount; i++)
+		{
+			delete mPassenger[i];
+		}
 		delete[] mPassenger;
 	}
 

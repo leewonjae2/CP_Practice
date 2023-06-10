@@ -77,15 +77,22 @@ void Test1()
 {
 	DeusExMachina* d = DeusExMachina::GetInstance();
 
-	for (unsigned int i = 0; i < 11; i++)
-	{
-		cout << d->AddVehicle(new Boat(5)) << endl;
-	}
+	Airplane a = Airplane(5);
+	a.AddPassenger(new Person("aP", 75));
 
-	for (unsigned int index = 10; index > 0; index--)
-	{
-		cout << d->RemoveVehicle(index) << endl;
-	}
+	a = a = a;
+
+	cout << a.GetPassenger(0)->GetName() << endl;
+
+	a = Airplane(a);
+
+	cout << a.GetPassenger(0)->GetName() << endl;
+
+	Airplane a1 = Airplane(a);
+	Boat b = Boat(5);
+
+	
+
 	delete d;
 }
 

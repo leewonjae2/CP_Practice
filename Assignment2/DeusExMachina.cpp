@@ -18,6 +18,11 @@ namespace assignment2
 		return mInstance;
 	}
 
+	DeusExMachina::~DeusExMachina()
+	{
+		mExist = false;
+	}
+
 	void DeusExMachina::Travel() const
 	{
 		for (unsigned int i = 0; i < mVehicleCount; i++)

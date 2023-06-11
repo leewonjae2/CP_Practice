@@ -267,28 +267,50 @@ void DeusTest()
 int main(void)
 {
 	Boat bt(5);
-	bt.AddPassenger(new Person("btP", 75));
+	
+	bt.AddPassenger(new Person("btP1", 75));
+	bt.AddPassenger(new Person("btP2", 75));
+	bt.AddPassenger(new Person("btP3", 75));
+	bt.AddPassenger(new Person("btP4", 75));
+	bt.AddPassenger(new Person("btP5", 75));
 
 	bt = bt;
 
-	cout << bt.GetPassenger(0)->GetName() << endl;
+	cout << bt.GetPassenger(0)->GetName() << ", ";
+	cout << bt.GetPassenger(1)->GetName() << ", ";
+	cout << bt.GetPassenger(2)->GetName() << ", ";
+	cout << bt.GetPassenger(3)->GetName() << ", ";
+	cout << bt.GetPassenger(4)->GetName() << endl;
 
 	Airplane ap(5);
-	ap.AddPassenger(new Person("apP", 75));
+	ap.AddPassenger(new Person("apP1", 75));
+	ap.AddPassenger(new Person("apP2", 75));
+	ap.AddPassenger(new Person("apP3", 75));
+	ap.AddPassenger(new Person("apP4", 75));
+	ap.AddPassenger(new Person("apP5", 75));
+
 
 	ap = ap;
 
 	cout << ap.GetPassenger(0)->GetName() << endl;
 
 	Boatplane bp(5);
-	bp.AddPassenger(new Person("bpP", 75));
+	bp.AddPassenger(new Person("bpP1", 75));
+	bp.AddPassenger(new Person("bpP2", 75));
+	bp.AddPassenger(new Person("bpP3", 75));
+	bp.AddPassenger(new Person("bpP4", 75));
+	bp.AddPassenger(new Person("bpP5", 75));
+
 
 	bp = bp;
 
 	cout << bp.GetPassenger(0)->GetName() << endl;
 
 	Motorcycle mt;
-	mt.AddPassenger(new Person("mtP", 75));
+	mt.AddPassenger(new Person("mtP1", 75));
+	mt.AddPassenger(new Person("mtP2", 75));
+	mt.AddPassenger(new Person("mtP3", 75));
+
 
 	mt = mt;
 
@@ -296,7 +318,12 @@ int main(void)
 
 
 	Sedan sd;
-	sd.AddPassenger(new Person("sdP", 75));
+	Person sdP("sdP1", 75);
+	
+	sd.AddPassenger(&sdP);
+	sd.AddPassenger(new Person("sdP2", 75));
+	sd.AddPassenger(new Person("sdP3", 75));
+	sd.AddPassenger(new Person("sdP4", 75));
 
 	sd = sd;
 
@@ -304,7 +331,11 @@ int main(void)
 	cout << sd.GetMaxSpeed()<< endl;
 
 	Sedan sdt;
-	sdt.AddPassenger(new Person("sdtP", 75));
+	sdt.AddPassenger(new Person("sdtP1", 75));
+	sdt.AddPassenger(new Person("sdtP2", 75));
+	sdt.AddPassenger(new Person("sdtP3", 75));
+	sdt.AddPassenger(new Person("sdtP4", 75));
+
 	sdt.AddTrailer(new Trailer(100));
 
 	sdt = sdt;
@@ -313,7 +344,11 @@ int main(void)
 	cout << sdt.GetMaxSpeed() << endl;
 
 	UBoat ub = UBoat();
-	ub.AddPassenger(new Person("ubP", 75));
+	ub.AddPassenger(new Person("ubP1", 75));
+	ub.AddPassenger(new Person("ubP2", 75));
+	ub.AddPassenger(new Person("ubP3", 75));
+	ub.AddPassenger(new Person("ubP4", 75));
+	ub.AddPassenger(new Person("ubP5", 75));
 
 	ub = ub;
 

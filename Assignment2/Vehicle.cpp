@@ -49,7 +49,7 @@ namespace assignment2
 	{
 		for (unsigned int i = 0; i < mPassengerCount; i++)
 		{
-			delete mPassenger[i];
+			mPassenger[i]->~Person();
 		}
 		delete[] mPassenger;
 	}
@@ -145,6 +145,7 @@ namespace assignment2
 
 	void Vehicle::operator=(const Vehicle& other)
 	{
+		unsigned int tempPassengerCount = mPassengerCount;
 		mMaxPassengerCount = other.mMaxPassengerCount;
 		mPassengerCount = other.mPassengerCount;
 
@@ -168,6 +169,12 @@ namespace assignment2
 				}
 				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
 			}
+			
+			for (unsigned int i = 0; i < tempPassengerCount; i++)
+			{
+				temp1[i]->~Person();
+			}
+
 			delete[] temp1;
 		}
 	}

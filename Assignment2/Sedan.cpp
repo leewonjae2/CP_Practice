@@ -89,6 +89,9 @@ namespace assignment2
 
 	void Sedan::operator=(const Sedan& other)
 	{
+		Vehicle::operator=(other);
+
+
 		const Trailer* temp = mTrailer;
 
 		if (other.mTrailer != NULL)

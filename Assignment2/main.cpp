@@ -172,8 +172,10 @@ void Test1()
 
 	Sedan sd = Sedan();
 	sd.AddPassenger(new Person("sdP", 75));
+	Sedan sd2 = Sedan();
+	sd2.AddPassenger(new Person("sdP1", 75));
 
-	sd = sd;
+	sd = sd2;
 
 	cout << sd.GetPassenger(0)->GetName() << endl;
 	cout << sd.GetMaxSpeed() << endl;
@@ -262,9 +264,16 @@ void DeusTest()
 	delete d;
 }
 
-void main()
+int main(void)
 {
-	Test1();
+	Sedan sd = Sedan();
+	sd.AddPassenger(new Person("sdP", 75));
+	Sedan sd2 = Sedan();
+	sd2.AddPassenger(new Person("sdP1", 75));
 
-	return ;
+	sd = sd2;
+
+	cout << sd.GetPassenger(0)->GetName();
+
+	return 0;
 }

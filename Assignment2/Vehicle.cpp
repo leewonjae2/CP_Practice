@@ -49,7 +49,7 @@ namespace assignment2
 	{
 		for (unsigned int i = 0; i < mPassengerCount; i++)
 		{
-			mPassenger[i]->~Person();
+			delete mPassenger[i];
 		}
 		delete[] mPassenger;
 	}
@@ -172,7 +172,7 @@ namespace assignment2
 			
 			for (unsigned int i = 0; i < tempPassengerCount; i++)
 			{
-				temp1[i]->~Person();
+				delete temp1[i];
 			}
 
 			delete[] temp1;

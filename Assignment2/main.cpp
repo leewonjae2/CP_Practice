@@ -256,18 +256,30 @@ void DeusTest()
 
 	for (int i = 0; i < 10; i++)
 	{
-		d->AddVehicle(new Airplane(5));
+		Airplane* ap = new Airplane(5);
+		
+		ap->AddPassenger(new Person("apP1", 75));
+		ap->AddPassenger(new Person("apP2", 75));
+		ap->AddPassenger(new Person("apP3", 75));
+		ap->AddPassenger(new Person("apP4", 75));
+		ap->AddPassenger(new Person("apP5", 75));
+
+		d->AddVehicle(ap);
+	}
+	for (int i = 10; i > 0; i--)
+	{
+		cout << d->RemoveVehicle(i) << endl;
 	}
 
-	cout << d->RemoveVehicle(9) << endl;
+	
 
 	delete d;
 }
 
-int main(void)
+void OperatorTest()
 {
 	Boat bt(5);
-	
+
 	bt.AddPassenger(new Person("btP1", 75));
 	bt.AddPassenger(new Person("btP2", 75));
 	bt.AddPassenger(new Person("btP3", 75));
@@ -319,7 +331,7 @@ int main(void)
 
 	Sedan sd;
 	Person sdP("sdP1", 75);
-	
+
 	sd.AddPassenger(&sdP);
 	sd.AddPassenger(new Person("sdP2", 75));
 	sd.AddPassenger(new Person("sdP3", 75));
@@ -328,7 +340,7 @@ int main(void)
 	sd = sd;
 
 	cout << sd.GetPassenger(0)->GetName() << endl;
-	cout << sd.GetMaxSpeed()<< endl;
+	cout << sd.GetMaxSpeed() << endl;
 
 	Sedan sdt;
 	sdt.AddPassenger(new Person("sdtP1", 75));
@@ -353,7 +365,25 @@ int main(void)
 	ub = ub;
 
 	cout << ub.GetPassenger(0)->GetName() << endl;
+}
 
+int main(void)
+{
+
+	Sedan sd;
+	Person sdP("sdP1", 75);
+
+	sd.AddPassenger(&sdP);
+	sd.AddPassenger(new Person("sdP2", 75));
+	sd.AddPassenger(new Person("sdP3", 75));
+	sd.AddPassenger(new Person("sdP4", 75));
+
+	sd = sd;
+
+	cout << sd.GetPassenger(0)->GetName() << endl;
+	cout << sd.GetMaxSpeed() << endl;
+
+	cout << sdP.GetName() << endl;
 
 	return 0;
 }

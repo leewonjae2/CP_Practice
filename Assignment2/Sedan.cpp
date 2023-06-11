@@ -8,6 +8,16 @@ namespace assignment2
 	{
 	}
 
+	Sedan::Sedan(const Sedan& other)
+		: Vehicle(other)
+		, mTrailer(NULL)
+	{
+		if (other.mTrailer != NULL)
+		{
+			mTrailer = new Trailer(other.mTrailer->GetWeight());
+		}
+	}
+
 	Sedan::~Sedan()
 	{
 		RemoveTrailer();
@@ -81,8 +91,15 @@ namespace assignment2
 	{
 		const Trailer* temp = mTrailer;
 
-		mTrailer = new Trailer(other.mTrailer->GetWeight());
-		delete temp;
+		if (other.mTrailer != NULL)
+		{
+			mTrailer = new Trailer(other.mTrailer->GetWeight());
+		}
+
+		if (temp != NULL)
+		{
+			delete temp;
+		}
 	}
 
 	void Sedan::Travel()

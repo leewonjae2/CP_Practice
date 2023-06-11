@@ -11,9 +11,11 @@ namespace assignment2
 	{
 	}
 
-	void Motorcycle::operator=(const Motorcycle& other)
+	Motorcycle Motorcycle::operator=(const Motorcycle& other)
 	{
 		Vehicle::operator=(other);
+
+		return *this;
 	}
 
 	unsigned int Motorcycle::GetMaxSpeed() const

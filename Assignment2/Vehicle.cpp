@@ -145,12 +145,15 @@ namespace assignment2
 
 	void Vehicle::operator=(const Vehicle& other)
 	{
+		const Person** temp = other.mPassenger;
+		const Person** temp1 = mPassenger;
 		unsigned int tempPassengerCount = mPassengerCount;
+
+
 		mMaxPassengerCount = other.mMaxPassengerCount;
 		mPassengerCount = other.mPassengerCount;
 
-		const Person** temp = other.mPassenger;
-		const Person** temp1 = mPassenger;
+
 		unsigned int nameSize;
 
 
@@ -175,6 +178,5 @@ namespace assignment2
 			delete temp1[i];
 		}
 		delete[] temp1;
-
 	}
 }

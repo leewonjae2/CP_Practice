@@ -9,7 +9,7 @@ namespace assignment2
 	public:
 		Motorcycle();
 		virtual ~Motorcycle();
-		void operator=(const Motorcycle& other);
+		Motorcycle operator=(const Motorcycle& other);
 
 		// Vehicle을(를) 통해 상속됨
 		virtual unsigned int GetMaxSpeed() const;

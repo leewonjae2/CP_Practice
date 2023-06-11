@@ -87,7 +87,7 @@ namespace assignment2
 		return 480;
 	}
 
-	void Sedan::operator=(const Sedan& other)
+	Sedan Sedan::operator=(const Sedan& other)
 	{
 		Vehicle::operator=(other);
 
@@ -111,6 +111,7 @@ namespace assignment2
 		else if (other.mTrailer == NULL && temp == NULL)
 		{
 		}
+		return *this;
 	}
 
 	void Sedan::Travel()

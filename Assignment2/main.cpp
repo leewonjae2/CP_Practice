@@ -376,16 +376,18 @@ void OperatorTest2()
 
 int main(void)
 {
-	Sedan s1;
-	Sedan s2;
-	s1.AddTrailer(new Trailer(100));
+	Person* p1 = new Person("a", 82);
+	Person* p2 = new Person("b", 72);
 
-	cout << s2.GetMaxSpeed() << endl;
+	Airplane ap1(4);
 
-	s2 = s2;
+	ap1.AddPassenger(p1);
+	ap1.AddPassenger(p2);
 
-	cout << s2.GetMaxSpeed() << endl;
-	
+	ap1 = ap1;
+
+	assert(ap1.GetPassenger(0) == p1);
+	assert(ap1.GetPassenger(1) == p2);
 
 	return 0;
 }

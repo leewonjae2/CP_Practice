@@ -25,7 +25,7 @@ namespace assignment2
 		// IDrivable을(를) 통해 상속됨
 		unsigned int GetDriveSpeed() const;
 
-		void operator=(const Sedan& other);
+		Sedan operator=(const Sedan& other);
 		void Travel();
 
 	private:

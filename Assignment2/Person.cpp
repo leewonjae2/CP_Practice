@@ -3,8 +3,13 @@
 namespace assignment2
 {
 	Person::Person(const char* name, unsigned int weight)
-		: mName(name)
-		, mWeight(weight)
+		: mWeight(weight)
+		, mName(name)
+	{
+	}
+	Person::Person(const Person& other)
+		: mWeight(other.mWeight)
+		, mName(other.GetName())
 	{
 	}
 	Person::Person()
@@ -24,5 +29,12 @@ namespace assignment2
 	unsigned int Person::GetWeight() const
 	{
 		return mWeight;
+	}
+	Person& Person::operator=(const Person& other)
+	{
+		mName = other.mName;
+		mWeight = other.mWeight;
+
+		return *this;
 	}
 }

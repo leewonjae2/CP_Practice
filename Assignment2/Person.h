@@ -9,13 +9,15 @@ namespace assignment2
 	public:
 		Person();
 		Person(const char* name, unsigned int weight);
+		Person(const Person& other);
 		virtual ~Person();
 
 		const std::string& GetName() const;
 		unsigned int GetWeight() const;
+		Person& operator=(const Person& other);
 
 	private:
-		const std::string mName;
+		std::string mName;
 		unsigned int mWeight;
 	};
 }

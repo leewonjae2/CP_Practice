@@ -79,7 +79,7 @@ namespace assignment2
 		return bp;
 	}
 
-	Boat Boat::operator=(const Boat& other)
+	Boat& Boat::operator=(const Boat& other)
 	{
 		if (this == &other)
 		{

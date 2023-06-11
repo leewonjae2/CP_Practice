@@ -12,7 +12,7 @@ namespace assignment2
 	{
 	}
 
-	Boatplane Boatplane::operator=(const Boatplane& other)
+	Boatplane& Boatplane::operator=(const Boatplane& other)
 	{
 		if (this == &other)
 		{

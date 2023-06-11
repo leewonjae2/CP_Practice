@@ -18,7 +18,7 @@ namespace assignment2
 		unsigned int GetDriveSpeed() const;
 		unsigned int GetFlySpeed() const;
 		void Travel();
-		Airplane operator=(const Airplane& other);
+		Airplane& operator=(const Airplane& other);
 
 		Boatplane operator+(Boat& boat);
 

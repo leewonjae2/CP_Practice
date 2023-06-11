@@ -72,7 +72,7 @@ namespace assignment2
 		}
 	}
 
-	Airplane Airplane::operator=(const Airplane& other)
+	Airplane& Airplane::operator=(const Airplane& other)
 	{
 		if (this == &other)
 		{

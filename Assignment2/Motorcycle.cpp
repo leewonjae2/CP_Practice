@@ -11,7 +11,7 @@ namespace assignment2
 	{
 	}
 
-	Motorcycle Motorcycle::operator=(const Motorcycle& other)
+	Motorcycle& Motorcycle::operator=(const Motorcycle& other)
 	{
 		if (this == &other)
 		{

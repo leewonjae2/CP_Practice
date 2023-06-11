@@ -67,84 +67,46 @@ namespace lab6
 
 	int NumberWithMaxOccurrence(const std::vector<int>& v)
 	{
-		if (v.size() == 0)
-		{
-			return 0;
-		}
-
-		std::vector<int> temp = v;
+		std::vector<int>temp = v;
 		SortDescending(temp);
-		int numberCount = 1;
+
+		int* ptr1 = &temp[0];
+		int* ptr2 = &temp[0];
+		int ptr1Count = 0;
+		int ptr2Count = 0;
+
+		size_t index;
+
+		for (index = 0; index < temp.size(); index++)
+		{
+			if (*ptr1 != temp[index])
+			{
+				break;
+			}
+			ptr1Count++;
+		}
+
+		for (; index < temp.size(); index++)
+		{
+			ptr2 = &temp[index];
+			for (; index < temp.size(); index++)
+			{
+				if (*ptr2 != temp[index])
+				{
+					break;
+				}
+				ptr2Count++;
+			}
+
+			if (ptr2Count > ptr1Count)
+			{
+				ptr1 = ptr2;
+				ptr1Count = ptr2Count;
+			}
+		}
 		
-		if (v.size() > 1)
-		{
-			for (unsigned int i = 0; i < temp.size() - 1; i++)
-			{
-				if (temp[i] != temp[i + 1])
-				{
-					numberCount++;
-				}
-			}
-		}
 
-		if (numberCount > 1)
-		{
-			int** numbers = new int* [numberCount];
-			
-			for (unsigned int i = 0; i < numberCount; i++)
-			{
-				numbers[i] = new int[2];
-			}
-
-
-			int index = 0;
-
-			numbers[0][0] = temp[0];
-			numbers[0][1] = 1;
-			index++;
-
-
-			for (unsigned int i = 0; i < temp.size() - 1; i++)
-			{
-				if (temp[i] != temp[i + 1])
-				{
-					if (index < numberCount)
-					{
-						numbers[index][0] = temp[i + 1];
-						numbers[index][1] = 1;
-						index++;
-					}
-				}
-				else
-				{
-					numbers[index - 1][1]++;
-				}
-			}
-
-			int maxCount = 0;
-			int countedNumber = 0;
-
-			for (index = 0; index < numberCount; index++)
-			{
-				if (maxCount < numbers[index][1])
-				{
-					countedNumber = numbers[index][0];
-					maxCount = numbers[index][1];
-				}
-			}
-
-			for (unsigned int i = 0; i < numberCount; i++)
-			{
-				delete[] numbers[i];
-			}
-			delete[] numbers;
-
-			return countedNumber;
-		}
-
-
-
-		return 0;
+		return *ptr1;
 	}
 
 	void SortDescending(std::vector<int>& v)

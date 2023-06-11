@@ -14,6 +14,11 @@ namespace assignment2
 
 	Boatplane Boatplane::operator=(const Boatplane& other)
 	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
 		Vehicle::operator=(other);
 
 		return *this;

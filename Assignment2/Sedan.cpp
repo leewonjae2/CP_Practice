@@ -89,6 +89,12 @@ namespace assignment2
 
 	Sedan Sedan::operator=(const Sedan& other)
 	{
+
+		if (this == &other)
+		{
+			return *this;
+		}
+
 		Vehicle::operator=(other);
 
 

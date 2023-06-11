@@ -25,6 +25,7 @@ namespace assignment2
 	{
 		const Person** temp = other.mPassenger;
 		unsigned int nameSize;
+		char* tempName;
 
 		mPassenger = new const Person * [mMaxPassengerCount];
 
@@ -33,7 +34,7 @@ namespace assignment2
 			for (unsigned int i = 0; i < mPassengerCount; i++)
 			{
 				nameSize = temp[i]->GetName().length();
-				char* tempName = new char[nameSize + 1];
+				tempName = new char[nameSize + 1];
 
 				for (unsigned int j = 0; j <= nameSize; j++)
 				{

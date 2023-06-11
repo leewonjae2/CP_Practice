@@ -11,6 +11,10 @@ namespace assignment2
 	UBoat::~UBoat()
 	{
 	}
+	void UBoat::operator=(const UBoat& other)
+	{
+		Vehicle::operator=(other);
+	}
 	unsigned int UBoat::GetMaxSpeed() const
 	{
 		unsigned int maxSpeed = GetSailSpeed();

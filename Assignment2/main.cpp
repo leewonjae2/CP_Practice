@@ -80,7 +80,7 @@ void Test1()
 	Airplane a = Airplane(5);
 	a.AddPassenger(new Person("aP", 75));
 
-	a = a = a;
+	a = a;
 
 	cout << a.GetPassenger(0)->GetName() << endl;
 
@@ -104,7 +104,7 @@ void Test1()
 	Boat b = Boat(5);
 	b.AddPassenger(new Person("bP", 75));
 
-	b = b = b;
+	b = b;
 
 	cout << b.GetPassenger(0)->GetName() << endl;
 
@@ -127,7 +127,7 @@ void Test1()
 	Boatplane bp = Boatplane(5);
 	bp.AddPassenger(new Person("bPP", 75));
 
-	bp = bp = bp;
+	bp = bp;
 
 	cout << bp.GetPassenger(0)->GetName() << endl;
 
@@ -150,7 +150,7 @@ void Test1()
 	Motorcycle mt = Motorcycle();
 	mt.AddPassenger(new Person("mtP", 75));
 
-	mt = mt = mt;
+	mt = mt;
 
 	cout << mt.GetPassenger(0)->GetName() << endl;
 
@@ -230,7 +230,7 @@ void Test1()
 	UBoat ub = UBoat();
 	ub.AddPassenger(new Person("ubP", 75));
 
-	ub = ub = ub;
+	ub = ub;
 
 	cout << ub.GetPassenger(0)->GetName() << endl;
 
@@ -266,14 +266,59 @@ void DeusTest()
 
 int main(void)
 {
-	Sedan sd = Sedan();
+	Boat bt(5);
+	bt.AddPassenger(new Person("btP", 75));
+
+	bt = bt;
+
+	cout << bt.GetPassenger(0)->GetName() << endl;
+
+	Airplane ap(5);
+	ap.AddPassenger(new Person("apP", 75));
+
+	ap = ap;
+
+	cout << ap.GetPassenger(0)->GetName() << endl;
+
+	Boatplane bp(5);
+	bp.AddPassenger(new Person("bpP", 75));
+
+	bp = bp;
+
+	cout << bp.GetPassenger(0)->GetName() << endl;
+
+	Motorcycle mt;
+	mt.AddPassenger(new Person("mtP", 75));
+
+	mt = mt;
+
+	cout << mt.GetPassenger(0)->GetName() << endl;
+
+
+	Sedan sd;
 	sd.AddPassenger(new Person("sdP", 75));
-	Sedan sd2 = Sedan();
-	sd2.AddPassenger(new Person("sdP1", 75));
 
-	sd = sd2;
+	sd = sd;
 
-	cout << sd.GetPassenger(0)->GetName();
+	cout << sd.GetPassenger(0)->GetName() << endl;
+	cout << sd.GetMaxSpeed()<< endl;
+
+	Sedan sdt;
+	sdt.AddPassenger(new Person("sdtP", 75));
+	sdt.AddTrailer(new Trailer(100));
+
+	sdt = sdt;
+
+	cout << sdt.GetPassenger(0)->GetName() << endl;
+	cout << sdt.GetMaxSpeed() << endl;
+
+	UBoat ub = UBoat();
+	ub.AddPassenger(new Person("ubP", 75));
+
+	ub = ub;
+
+	cout << ub.GetPassenger(0)->GetName() << endl;
+
 
 	return 0;
 }

@@ -12,6 +12,11 @@ namespace assignment2
 	{
 	}
 
+	void Boatplane::operator=(const Boatplane& other)
+	{
+		Vehicle::operator=(other);
+	}
+
 
 	unsigned int Boatplane::GetMaxSpeed() const
 	{

@@ -10,6 +10,7 @@ namespace assignment2
 	public:
 		UBoat();
 		virtual ~UBoat();
+		void operator=(const UBoat& other);
 
 		// Vehicle을(를) 통해 상속됨
 		unsigned int GetMaxSpeed() const;

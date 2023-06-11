@@ -15,6 +15,8 @@ namespace assignment2
 		virtual ~Boat();
 
 		Boatplane operator+(Airplane& plane);
+		void operator=(const Boat& other);
+
 
 		unsigned int GetSailSpeed() const;
 

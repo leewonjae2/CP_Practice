@@ -11,6 +11,11 @@ namespace assignment2
 	{
 	}
 
+	void Motorcycle::operator=(const Motorcycle& other)
+	{
+		Vehicle::operator=(other);
+	}
+
 	unsigned int Motorcycle::GetMaxSpeed() const
 	{
 		return GetDriveSpeed();

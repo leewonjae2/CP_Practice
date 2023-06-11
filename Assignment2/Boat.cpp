@@ -79,5 +79,10 @@ namespace assignment2
 		return bp;
 	}
 
+	void Boat::operator=(const Boat& other)
+	{
+		Vehicle::operator=(other);
+	}
+
 
 }

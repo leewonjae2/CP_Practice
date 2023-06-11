@@ -72,6 +72,11 @@ namespace assignment2
 		}
 	}
 
+	void Airplane::operator=(const Airplane& other)
+	{
+		Vehicle::operator=(other);
+	}
+
 	Boatplane Airplane::operator+(Boat& boat)
 	{
 

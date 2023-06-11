@@ -169,13 +169,11 @@ namespace assignment2
 				}
 				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
 			}
-			
-			for (unsigned int i = 0; i < tempPassengerCount; i++)
-			{
-				delete temp1[i];
-			}
-
-			delete[] temp1;
 		}
+		for (unsigned int i = 0; i < tempPassengerCount; i++)
+		{
+			delete temp1[i];
+		}
+		delete[] temp1;
 	}
 }

@@ -330,9 +330,9 @@ void OperatorTest()
 
 
 	Sedan sd;
-	Person sdP("sdP1", 75);
+	
 
-	sd.AddPassenger(&sdP);
+	sd.AddPassenger(new Person("sdP1" ,75));
 	sd.AddPassenger(new Person("sdP2", 75));
 	sd.AddPassenger(new Person("sdP3", 75));
 	sd.AddPassenger(new Person("sdP4", 75));
@@ -370,20 +370,13 @@ void OperatorTest()
 int main(void)
 {
 
-	Sedan sd;
-	Person sdP("sdP1", 75);
+	Airplane ap1(4);
+	Airplane ap2(4);
 
-	sd.AddPassenger(&sdP);
-	sd.AddPassenger(new Person("sdP2", 75));
-	sd.AddPassenger(new Person("sdP3", 75));
-	sd.AddPassenger(new Person("sdP4", 75));
+	ap1.AddPassenger(new Person("a", 82));
+	ap1.AddPassenger(new Person("b", 72));
 
-	sd = sd;
-
-	cout << sd.GetPassenger(0)->GetName() << endl;
-	cout << sd.GetMaxSpeed() << endl;
-
-	cout << sdP.GetName() << endl;
+	ap1 = ap2;
 
 	return 0;
 }

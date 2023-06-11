@@ -23,24 +23,13 @@ namespace assignment2
 		, mDistance(other.mDistance)
 		, mTravelCount(other.mTravelCount)
 	{
-		const Person** temp = other.mPassenger;
-		unsigned int nameSize;
-		char* tempName;
-
 		mPassenger = new const Person * [mMaxPassengerCount];
 
-		if (mPassengerCount > 0 && mPassengerCount <= mMaxPassengerCount)
+		if (mPassengerCount <= mMaxPassengerCount)
 		{
 			for (unsigned int i = 0; i < mPassengerCount; i++)
 			{
-				nameSize = temp[i]->GetName().length();
-				tempName = new char[nameSize + 1];
-
-				for (unsigned int j = 0; j <= nameSize; j++)
-				{
-					tempName[j] = temp[i]->GetName()[j];
-				}
-				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
+				mPassenger[i] = new Person(*other.mPassenger[i]);
 			}
 		}
 	}
@@ -145,38 +134,28 @@ namespace assignment2
 
 	void Vehicle::operator=(const Vehicle& other)
 	{
-		const Person** temp = other.mPassenger;
-		const Person** temp1 = mPassenger;
-		unsigned int tempPassengerCount = mPassengerCount;
 
+		if (this == &other)
+		{
+			return;
+		}
+		for (unsigned int i = 0; i < mPassengerCount; i++)
+		{
+			delete mPassenger[i];
+		}
+
+		delete[] mPassenger;
 
 		mMaxPassengerCount = other.mMaxPassengerCount;
 		mPassengerCount = other.mPassengerCount;
-
-
-		unsigned int nameSize;
-
-
 		mPassenger = new const Person * [mMaxPassengerCount];
 
-		if (mPassengerCount > 0 && mPassengerCount <= mMaxPassengerCount)
+		if (mPassengerCount <= mMaxPassengerCount)
 		{
 			for (unsigned int i = 0; i < mPassengerCount; i++)
 			{
-				nameSize = temp[i]->GetName().length();
-				char* tempName = new char[nameSize + 1];
-
-				for (unsigned int j = 0; j <= nameSize; j++)
-				{
-					tempName[j] = temp[i]->GetName()[j];
-				}
-				mPassenger[i] = new Person(tempName, temp[i]->GetWeight());
+				mPassenger[i] = new Person(*other.mPassenger[i]);
 			}
 		}
-		for (unsigned int i = 0; i < tempPassengerCount; i++)
-		{
-			delete temp1[i];
-		}
-		delete[] temp1;
 	}
 }

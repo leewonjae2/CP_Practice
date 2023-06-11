@@ -376,18 +376,8 @@ void OperatorTest2()
 
 int main(void)
 {
-	Person* p1 = new Person("a", 82);
-	Person* p2 = new Person("b", 72);
+	OperatorTest();
 
-	Airplane ap1(4);
-
-	ap1.AddPassenger(p1);
-	ap1.AddPassenger(p2);
-
-	ap1 = ap1;
-
-	assert(ap1.GetPassenger(0) == p1);
-	assert(ap1.GetPassenger(1) == p2);
 
 	return 0;
 }

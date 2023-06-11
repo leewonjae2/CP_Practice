@@ -175,5 +175,6 @@ namespace assignment2
 			delete temp1[i];
 		}
 		delete[] temp1;
+
 	}
 }

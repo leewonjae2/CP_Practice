@@ -355,7 +355,7 @@ void OperatorTest()
 	cout << sdt.GetPassenger(0)->GetName() << endl;
 	cout << sdt.GetMaxSpeed() << endl;
 
-	UBoat ub = UBoat();
+	UBoat ub;
 	ub.AddPassenger(new Person("ubP1", 75));
 	ub.AddPassenger(new Person("ubP2", 75));
 	ub.AddPassenger(new Person("ubP3", 75));
@@ -367,16 +367,25 @@ void OperatorTest()
 	cout << ub.GetPassenger(0)->GetName() << endl;
 }
 
+void OperatorTest2()
+{
+	Airplane ap(5);
+
+	ap = ap;
+}
+
 int main(void)
 {
+	Sedan s1;
+	Sedan s2;
+	s1.AddTrailer(new Trailer(100));
 
-	Airplane ap1(4);
-	Airplane ap2(4);
+	cout << s2.GetMaxSpeed() << endl;
 
-	ap1.AddPassenger(new Person("a", 82));
-	ap1.AddPassenger(new Person("b", 72));
+	s2 = s2;
 
-	ap1 = ap2;
+	cout << s2.GetMaxSpeed() << endl;
+	
 
 	return 0;
 }

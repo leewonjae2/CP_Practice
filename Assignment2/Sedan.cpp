@@ -94,14 +94,22 @@ namespace assignment2
 
 		const Trailer* temp = mTrailer;
 
-		if (other.mTrailer != NULL)
+		if (other.mTrailer != NULL && temp != NULL)
+		{
+			mTrailer = new Trailer(other.mTrailer->GetWeight());
+			delete temp;
+		}
+		else if (other.mTrailer == NULL && temp != NULL)
+		{
+			delete temp;
+			mTrailer = NULL;
+		}
+		else if (other.mTrailer != NULL && temp == NULL)
 		{
 			mTrailer = new Trailer(other.mTrailer->GetWeight());
 		}
-
-		if (temp != NULL)
+		else if (other.mTrailer == NULL && temp == NULL)
 		{
-			delete temp;
 		}
 	}
 

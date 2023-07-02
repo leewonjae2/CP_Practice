@@ -11,13 +11,13 @@ namespace lab7
 	std::map<K, V> ConvertVectorsToMap(const std::vector<K>& keys, const std::vector<V>& values)
 	{
 		std::map<K, V> m;
-		size_t mapSize = std::min(keys.size(),values.size());
+		size_t mapSize = std::min(keys.size(), values.size());
 
 		for (size_t i = 0; i < mapSize; i++)
 		{
 			m.insert(std::pair<K, V>(keys[i], values[i]));
 		}
-		
+
 		return m;
 	}
 
@@ -73,11 +73,11 @@ namespace lab7
 	{
 		std::vector<T> combined;
 		std::set<T> s;
-		
+
 
 		for (size_t i = 0; i < v1.size(); i++)
 		{
-			
+
 			if (s.insert(v1[i]).second == true)
 			{
 				combined.push_back(v1[i]);
@@ -91,7 +91,7 @@ namespace lab7
 				combined.push_back(v2[i]);
 			}
 		}
-		
+
 		return combined;
 	}
 
@@ -99,10 +99,9 @@ namespace lab7
 	std::map<K, V> operator+(const std::map<K, V>& m1, const std::map<K, V>& m2)
 	{
 		std::map<K, V> combined;
-		
+
 		for (auto iter = m1.begin(); iter != m1.end(); iter++)
 		{
-			combined.insert(std::pair<K, V>(iter->first, iter->second));
 			combined.insert(std::pair<K, V>(iter->first, iter->second));
 		}
 

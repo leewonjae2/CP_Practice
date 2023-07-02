@@ -103,6 +103,7 @@ namespace lab7
 		for (auto iter = m1.begin(); iter != m1.end(); iter++)
 		{
 			combined.insert(std::pair<K, V>(iter->first, iter->second));
+			combined.insert(std::pair<K, V>(iter->first, iter->second));
 		}
 
 		for (auto iter = m2.begin(); iter != m2.end(); iter++)

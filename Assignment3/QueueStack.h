@@ -20,7 +20,7 @@ namespace assignment3
 		unsigned int GetCount();
 		unsigned int GetStackCount();
 	private:
-		std::queue<std::stack<T>*> mQueue;
+		std::queue<std::stack<T>> mQueue;
 		unsigned int mMaxStackSize;
 		std::stack<T> mMin;
 		std::stack<T> mMax;
@@ -34,7 +34,7 @@ namespace assignment3
 		, mSum(0)
 		, mSize(0)
 	{
-		mQueue.push(new std::stack<T>);
+		mQueue.push(std::stack<T>());
 		mMax.push(std::numeric_limits<T>::min());
 		mMin.push(std::numeric_limits<T>::max());
 	}
@@ -42,12 +42,9 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T>::~QueueStack()
 	{
-		std::stack<T>* temp;
-		for (unsigned int i = 0; i < (mQueue.size()); i++)
+		while (mQueue.empty() == false)
 		{
-			temp = mQueue.front();
 			mQueue.pop();
-			delete temp;
 		}
 	}
 
@@ -55,9 +52,9 @@ namespace assignment3
 	void assignment3::QueueStack<T>::Enqueue(T number)
 	{
 
-		if (mQueue.back()->size() == mMaxStackSize)
+		if (mQueue.back().size() == mMaxStackSize)
 		{
-			mQueue.push(new std::stack<T>);
+			mQueue.push(std::stack<T>());
 		}
 
 
@@ -74,30 +71,29 @@ namespace assignment3
 		mSum += number;
 		mSize++;
 
-		if (mQueue.front()->size() != mMaxStackSize)
+		if (mQueue.front().size() != mMaxStackSize)
 		{
-			mQueue.front()->push(number);
+			mQueue.front().push(number);
 			return;
 		}
 
-		mQueue.back()->push(number);
+		mQueue.back().push(number);
 
 	}
-
+	
 	template<typename T>
 	T assignment3::QueueStack<T>::Peek()
 	{
-		return mQueue.front()->top();
+		return mQueue.front().top();
 	}
 
 	template<typename T>
 	T assignment3::QueueStack<T>::Dequeue()
 	{
-		T temp = mQueue.front()->top();
-		mQueue.front()->pop();
-		if (mQueue.front()->empty() == true)
+		T temp = mQueue.front().top();
+		mQueue.front().pop();
+		if (mQueue.front().empty() == true)
 		{
-			delete mQueue.front();
 			mQueue.pop();
 		}
 		mSum -= temp;

@@ -1,5 +1,6 @@
 #pragma once
 #include <queue>
+#include <stack>
 #include <limits>
 
 namespace assignment3
@@ -11,7 +12,7 @@ namespace assignment3
 	public:
 		SmartQueue();
 		~SmartQueue();
-		void Enqueue();
+		void Enqueue(T number);
 		T Peek();
 		T Dequeue();
 		T GetMax();
@@ -23,18 +24,16 @@ namespace assignment3
 		unsigned int GetCount();
 	private:
 		std::queue<T> mQueue;
-		unsigned int mSize;
-		std::queue<T> mMax;
-		std::queue<T> mMin;
+		std::stack<T> mMax;
+		std::stack<T> mMin;
 		T mSum;
-		double mPoweredDeviation;
+		double mSum2;
 	};
 
 	template<typename T>
 	SmartQueue<T>::SmartQueue()
-		: mSize(0)
-		, mSum(0)
-		, mPoweredDeviation(0)
+		: mSum(0)
+		, mSum2(0)
 	{
 		mMax.push(std::numeric_limits<T>::min());
 		mMin.push(std::numeric_limits<T>::max());
@@ -47,61 +46,87 @@ namespace assignment3
 	}
 
 	template<typename T>
-	void SmartQueue<T>::Enqueue()
+	void SmartQueue<T>::Enqueue(T number)
 	{
+		if (mMax.top() < number)
+		{
+			mMax.push(number);
+		}
+
+		if (mMin.top() > number)
+		{
+			mMin.push(number);
+		}
+
+		mSum += number;
+		mSum2 += number * number;
+		mQueue.push(number);
 	}
 
 	template<typename T>
 	T SmartQueue<T>::Peek()
 	{
-		return T();
+		return mQueue.front();
 	}
 
 	template<typename T>
 	T SmartQueue<T>::Dequeue()
 	{
-		return T();
+		T result = mQueue.front();
+		if (result == mMin.top())
+		{
+			mMin.pop();
+		}
+		if (result == mMax.top())
+		{
+			mMax.pop();
+		}
+		mQueue.pop();
+		mSum -= result;
+		mSum2 -= result * result;
+
+		return result;
 	}
 
 	template<typename T>
 	T SmartQueue<T>::GetMax()
 	{
-		return T();
+		return mMax.top();
 	}
 
 	template<typename T>
 	T SmartQueue<T>::GetMin()
 	{
-		return T();
+		return mMin.top();
 	}
 
 	template<typename T>
 	double SmartQueue<T>::GetAverage()
 	{
-		return 0.0;
+		return static_cast<double>(mSum) / mQueue.size();
 	}
 
 	template<typename T>
 	T SmartQueue<T>::GetSum()
 	{
-		return T();
+		return mSum;
 	}
 
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		return 0.0;
+		return (mSum2 / mQueue.size()) - (pow((mSum / mQueue.size()), 2));
 	}
 
 	template<typename T>
 	double SmartQueue<T>::GetStandardDeviation()
 	{
-		return 0.0;
+		return sqrt(GetVariance());
 	}
 
 	template<typename T>
 	unsigned int SmartQueue<T>::GetCount()
 	{
-		return 0;
+		return mQueue.size();
 	}
 }

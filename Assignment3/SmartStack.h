@@ -27,7 +27,6 @@ namespace assignment3
 
 	private:
 		std::stack<T> mStack;
-		unsigned int mSize;
 		std::stack<T> mMax;
 		std::stack<T> mMin;
 		T mSum;
@@ -38,14 +37,13 @@ namespace assignment3
 
 	template<typename T>
 	SmartStack<T>::SmartStack()
-		: mSize(0)
-		, mSum(0)
+		: mSum(0)
 		, mSum2(0)
 	{
 		mMax.push(std::numeric_limits<T>::min());
 		mMin.push(std::numeric_limits<T>::max());
 	}
-	
+
 
 	template<typename T>
 	SmartStack<T>::~SmartStack()
@@ -65,7 +63,6 @@ namespace assignment3
 			mMin.push(number);
 		}
 
-		mSize++;
 		mSum += number;
 		mSum2 += number * number;
 		mStack.push(number);
@@ -85,7 +82,6 @@ namespace assignment3
 			mMax.pop();
 		}
 		mStack.pop();
-		mSize--;
 		mSum -= result;
 		mSum2 -= result * result;
 
@@ -114,7 +110,7 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage()
 	{
-		return static_cast<double>(mSum) / mSize;
+		return static_cast<double>(mSum) / mStack.size();
 	}
 
 	template<typename T>
@@ -127,7 +123,7 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
-		return (mSum2 / mSize) - (pow((mSum / mSize), 2));
+		return (mSum2 / mStack.size()) - (pow((mSum / mStack.size()), 2));
 	}
 
 	template<typename T>
@@ -139,14 +135,13 @@ namespace assignment3
 	template<typename T>
 	unsigned int SmartStack<T>::GetCount()
 	{
-		return mSize;
+		return mStack.size();
 	}
 
 	template<typename T>
 	SmartStack<T>& SmartStack<T>::operator=(const SmartStack<T>& other)
 	{
 		mStack = other.mStack;
-		mSize = other.mSize;
 		mMax = other.mMax;
 		mMin = other.mMin;
 	}

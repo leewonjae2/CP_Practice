@@ -482,17 +482,17 @@ void TestQueueStack()
 
 
     // test max stack count 0
-    /*qs = QueueStack<int>(0);
+   /* qs = QueueStack<int>(0);
     qs.Enqueue(1);
     qs.Enqueue(2);
-    qs.Enqueue(3);
+    qs.Enqueue(3);*/
 
 
     assert(qs.GetMax() == std::numeric_limits<int>::min());
     assert(qs.GetMin() == std::numeric_limits<int>::max());
     assert(qs.GetSum() == 0);
     assert(qs.GetCount() == 0u);
-    assert(qs.GetStackCount() == 0u);*/
+    assert(qs.GetStackCount() == 0u);
 };
 
 

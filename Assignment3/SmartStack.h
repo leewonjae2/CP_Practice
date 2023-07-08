@@ -41,8 +41,6 @@ namespace assignment3
 		: mSum(0)
 		, mSum2(0)
 	{
-		mMax.push(std::numeric_limits<T>::lowest());
-		mMin.push(std::numeric_limits<T>::max());
 	}
 
 
@@ -54,6 +52,11 @@ namespace assignment3
 	template<typename T>
 	void SmartStack<T>::Push(T number)
 	{
+		if (mStack.empty() == true)
+		{
+			mMax.push(number);
+			mMin.push(number);
+		}
 		if (mMax.top() <= number)
 		{
 			mMax.push(number);
@@ -99,12 +102,20 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::GetMax()
 	{
+		if (mStack.empty() == true)
+		{
+			return std::numeric_limits<T>::lowest();
+		}
 		return mMax.top();
 	}
 
 	template<typename T>
 	T SmartStack<T>::GetMin()
 	{
+		if (mStack.empty() == true)
+		{
+			return std::numeric_limits<T>::max();
+		}
 		return mMin.top();
 	}
 

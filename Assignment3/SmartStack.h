@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 #include <limits>
+#include "QueueStack.h"
 
 
 namespace assignment3
@@ -40,7 +41,7 @@ namespace assignment3
 		: mSum(0)
 		, mSum2(0)
 	{
-		mMax.push(std::numeric_limits<T>::min());
+		mMax.push(std::numeric_limits<T>::lowest());
 		mMin.push(std::numeric_limits<T>::max());
 	}
 
@@ -53,12 +54,12 @@ namespace assignment3
 	template<typename T>
 	void SmartStack<T>::Push(T number)
 	{
-		if (mMax.top() < number)
+		if (mMax.top() <= number)
 		{
 			mMax.push(number);
 		}
 
-		if (mMin.top() > number)
+		if (mMin.top() >= number)
 		{
 			mMin.push(number);
 		}
@@ -123,7 +124,7 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
-		return (mSum2 / mStack.size()) - (pow((mSum / mStack.size()), 2));
+		return (mSum2 / mStack.size()) - (pow((static_cast<double>(mSum) / mStack.size()), 2));
 	}
 
 	template<typename T>
@@ -144,5 +145,9 @@ namespace assignment3
 		mStack = other.mStack;
 		mMax = other.mMax;
 		mMin = other.mMin;
+		mSum = other.mSum;
+		mSum2 = other.mSum2;
+
+		return *this;
 	}
 }

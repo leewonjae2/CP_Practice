@@ -22,10 +22,10 @@ namespace assignment3
 		double GetVariance();
 		double GetStandardDeviation();
 		unsigned int GetCount();
+
+		SmartQueue<T>& operator=(const SmartQueue<T>& other);
 	private:
 		std::queue<T> mQueue;
-		std::stack<T> mMax;
-		std::stack<T> mMin;
 		T mSum;
 		double mSum2;
 	};
@@ -35,8 +35,6 @@ namespace assignment3
 		: mSum(0)
 		, mSum2(0)
 	{
-		mMax.push(std::numeric_limits<T>::min());
-		mMin.push(std::numeric_limits<T>::max());
 	}
 
 
@@ -48,16 +46,6 @@ namespace assignment3
 	template<typename T>
 	void SmartQueue<T>::Enqueue(T number)
 	{
-		if (mMax.top() < number)
-		{
-			mMax.push(number);
-		}
-
-		if (mMin.top() > number)
-		{
-			mMin.push(number);
-		}
-
 		mSum += number;
 		mSum2 += number * number;
 		mQueue.push(number);
@@ -73,14 +61,6 @@ namespace assignment3
 	T SmartQueue<T>::Dequeue()
 	{
 		T result = mQueue.front();
-		if (result == mMin.top())
-		{
-			mMin.pop();
-		}
-		if (result == mMax.top())
-		{
-			mMax.pop();
-		}
 		mQueue.pop();
 		mSum -= result;
 		mSum2 -= result * result;
@@ -91,13 +71,50 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::GetMax()
 	{
-		return mMax.top();
+		std::queue<T> temp;
+		T max = std::numeric_limits<T>::lowest();
+		while (mQueue.empty() != true)
+		{
+			temp.push(mQueue.front());
+			if (max < mQueue.front())
+			{
+				max = mQueue.front();
+			}
+			mQueue.pop();
+			
+		}
+		while (temp.empty() != true)
+		{
+			mQueue.push(temp.front());
+			temp.pop();
+		}
+
+		return max;
 	}
 
 	template<typename T>
 	T SmartQueue<T>::GetMin()
 	{
-		return mMin.top();
+		std::queue<T> temp;
+		T min = std::numeric_limits<T>::max();
+
+		while (mQueue.empty() != true)
+		{
+			temp.push(mQueue.front());
+			if (min > mQueue.front())
+			{
+				min = mQueue.front();
+			}
+			mQueue.pop();
+
+		}
+		while (temp.empty() != true)
+		{
+			mQueue.push(temp.front());
+			temp.pop();
+		}
+
+		return min;
 	}
 
 	template<typename T>
@@ -115,7 +132,8 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		return (mSum2 / mQueue.size()) - (pow((mSum / mQueue.size()), 2));
+		double result = (mSum2 / mQueue.size()) - (pow((static_cast<double>(mSum) / mQueue.size()), 2));
+		return result;
 	}
 
 	template<typename T>
@@ -128,5 +146,15 @@ namespace assignment3
 	unsigned int SmartQueue<T>::GetCount()
 	{
 		return mQueue.size();
+	}
+
+	template<typename T>
+	inline SmartQueue<T>& assignment3::SmartQueue<T>::operator=(const SmartQueue<T>& other)
+	{
+		mQueue = other.mQueue;
+		mSum = other.mSum;
+		mSum2 = other.mSum2;
+		// TODO: 여기에 return 문을 삽입합니다.
+		return *this;
 	}
 }

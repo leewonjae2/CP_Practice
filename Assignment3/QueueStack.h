@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include <stack>
+#include "SmartStack.h"
 
 namespace assignment3
 {
@@ -8,7 +9,9 @@ namespace assignment3
 	class QueueStack
 	{
 	public:
+		QueueStack<T>& operator=(QueueStack<T> other);
 		QueueStack(unsigned int maxStackSize);
+		QueueStack(QueueStack<T>& other);
 		~QueueStack();
 		void Enqueue(T number);
 		T Peek();
@@ -19,11 +22,10 @@ namespace assignment3
 		T GetSum();
 		unsigned int GetCount();
 		unsigned int GetStackCount();
+
 	private:
 		std::queue<std::stack<T>> mQueue;
 		unsigned int mMaxStackSize;
-		std::stack<T> mMin;
-		std::stack<T> mMax;
 		T mSum;
 		unsigned int mSize;
 	};
@@ -34,9 +36,15 @@ namespace assignment3
 		, mSum(0)
 		, mSize(0)
 	{
-		mQueue.push(std::stack<T>());
-		mMax.push(std::numeric_limits<T>::min());
-		mMin.push(std::numeric_limits<T>::max());
+	}
+
+	template<typename T>
+	QueueStack<T>::QueueStack(QueueStack<T>& other)
+		: mMaxStackSize(other.mMaxStackSize)
+		, mSum(other.mSum)
+		, mSize(other.mSize)
+	{
+		mQueue = other.mQueue;
 	}
 
 	template<typename T>
@@ -49,46 +57,34 @@ namespace assignment3
 	}
 
 	template<typename T>
-	void assignment3::QueueStack<T>::Enqueue(T number)
+	void QueueStack<T>::Enqueue(T number)
 	{
+		if (mQueue.size() == 0)
+		{
+			mQueue.push(std::stack<T>());
+		}
 
 		if (mQueue.back().size() == mMaxStackSize)
 		{
 			mQueue.push(std::stack<T>());
 		}
 
-
-
-		if (mMax.top() < number)
-		{
-			mMax.push(number);
-		}
-
-		if (mMin.top() > number)
-		{
-			mMin.push(number);
-		}
 		mSum += number;
 		mSize++;
 
-		if (mQueue.front().size() != mMaxStackSize)
-		{
-			mQueue.front().push(number);
-			return;
-		}
 
 		mQueue.back().push(number);
 
 	}
 	
 	template<typename T>
-	T assignment3::QueueStack<T>::Peek()
+	T QueueStack<T>::Peek()
 	{
 		return mQueue.front().top();
 	}
 
 	template<typename T>
-	T assignment3::QueueStack<T>::Dequeue()
+	T QueueStack<T>::Dequeue()
 	{
 		T temp = mQueue.front().top();
 		mQueue.front().pop();
@@ -102,39 +98,83 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T assignment3::QueueStack<T>::GetMax()
+	T QueueStack<T>::GetMax()
 	{
-		return mMax.top();
+		T max = std::numeric_limits<T>::lowest();
+		std::queue<std::stack<T>> temp;
+		temp = mQueue;
+
+		while (temp.empty() != true)
+		{
+			if (max < temp.front().top())
+			{
+				max = temp.front().top();
+			}
+			temp.front().pop();
+			if (temp.front().empty() == true)
+			{
+				temp.pop();
+			}
+		}
+		return max;
 	}
 
 	template<typename T>
-	T assignment3::QueueStack<T>::GetMin()
+	T QueueStack<T>::GetMin()
 	{
-		return mMin.top();
+		T min = std::numeric_limits<T>::max();
+		std::queue<std::stack<T>> temp;
+		temp = mQueue;
+
+		while (temp.empty() != true)
+		{
+			if (min > temp.front().top())
+			{
+				min = temp.front().top();
+			}
+			temp.front().pop();
+			if (temp.front().empty() == true)
+			{
+				temp.pop();
+			}
+		}
+		return min;
 	}
 
 	template<typename T>
-	double assignment3::QueueStack<T>::GetAverage()
+	double QueueStack<T>::GetAverage()
 	{
 		return static_cast<double>(mSum) / mSize;
 	}
 
 	template<typename T>
-	T assignment3::QueueStack<T>::GetSum()
+	T QueueStack<T>::GetSum()
 	{
 		return mSum;
 	}
 
 	template<typename T>
-	unsigned int assignment3::QueueStack<T>::GetCount()
+	unsigned int QueueStack<T>::GetCount()
 	{
 		return mSize;
 	}
 
 
 	template<typename T>
-	unsigned int assignment3::QueueStack<T>::GetStackCount()
+	unsigned int QueueStack<T>::GetStackCount()
 	{
 		return mQueue.size();
+	}
+
+	template<typename T>
+	QueueStack<T>& QueueStack<T>::operator=(QueueStack<T> other)
+	{
+		std::queue<std::stack<T>> temp;
+		mQueue = other.mQueue;
+		mMaxStackSize = other.mMaxStackSize;
+		mSum = other.mSum;
+		mSize = other.mSize;
+
+		return *this;
 	}
 }

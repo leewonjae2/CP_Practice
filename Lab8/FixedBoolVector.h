@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 
-namespace lab8 
+namespace lab8
 {
 
 }

@@ -30,7 +30,7 @@ namespace lab8
 	{
 		mVector[0];
 	}
-	
+
 	template<class T, size_t N>
 	FixedVector<T, N>::~FixedVector()
 	{
@@ -106,7 +106,7 @@ namespace lab8
 	{
 		return N;
 	}
-	
+
 
 
 

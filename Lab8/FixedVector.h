@@ -25,7 +25,10 @@ namespace lab8
 	FixedVector<T, N>::FixedVector()
 		: mSize(0)
 	{
-		mVector[0];
+		for (size_t i = 0; i < N; i++)
+		{
+			mVector[i] = NULL;
+		}
 	}
 
 	template<class T, size_t N>

@@ -62,7 +62,7 @@ namespace lab8
 			size_t i;
 			for (i = 0; i < mSize - 1; i++)
 			{
-				if (mVector[i / 32] & (1 << i - (32 * (i / 32))))
+				if ((mVector[i / 32]) & (1 << (i - (32 * (i / 32)))))
 				{
 					break;
 				}
@@ -124,7 +124,7 @@ namespace lab8
 			size_t i;
 			for (i = 0; i < mSize; i++)
 			{
-				if (mVector[i / 32] & (1 << i - (32 * (i / 32))))
+				if ((mVector[i / 32]) & (1 << (i - (32 * (i / 32)))))
 				{
 					return i;
 				}
@@ -135,7 +135,7 @@ namespace lab8
 			size_t i;
 			for (i = 0; i < mSize; i++)
 			{
-				if (~(mVector[i / 32]) & (1 << i - (32 * (i / 32))))
+				if ((~(mVector[i / 32])) & (1 << (i - (32 * (i / 32)))))
 				{
 					return i;
 				}

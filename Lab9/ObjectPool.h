@@ -2,7 +2,7 @@
 #include <queue>
 
 
-namespace lab9 
+namespace lab9
 {
 	template<typename T>
 	class ObjectPool
@@ -63,7 +63,7 @@ namespace lab9
 		}
 		delete other;
 	}
-	template<typename T> 
+	template<typename T>
 	size_t ObjectPool<T>::GetFreeObjectCount()
 	{
 		return mQueue.size();

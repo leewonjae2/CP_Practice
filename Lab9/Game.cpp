@@ -6,7 +6,7 @@ namespace lab9
 		: mRandom(seed)
 		, mPool(4)
 	{
-		
+
 	}
 
 	Game::~Game()

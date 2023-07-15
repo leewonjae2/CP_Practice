@@ -31,7 +31,7 @@ namespace lab9
 	template<typename T>
 	ObjectPool<T>::~ObjectPool()
 	{
-		for (size_t i = 0; i < mQueue.size(); i++)
+		while (mQueue.empty() != true)
 		{
 			delete mQueue.front();
 			mQueue.pop();
@@ -43,7 +43,8 @@ namespace lab9
 	{
 		if (mQueue.empty() == true)
 		{
-			return (new T());
+			T* temp = new T();
+			return (temp);
 		}
 
 		T* temp = mQueue.front();

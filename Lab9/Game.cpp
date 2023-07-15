@@ -13,7 +13,7 @@ namespace lab9
 	{
 		for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it)
 		{
-			mPool.Return(*it);
+			delete (*it);
 		}
 
 		mActiveGameObjects.clear();
@@ -48,6 +48,8 @@ namespace lab9
 	{
 		return mActiveGameObjects;
 	}
+
+
 	ObjectPool<IceCube>& Game::GetObjectPool()
 	{
 		return mPool;

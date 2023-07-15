@@ -69,5 +69,9 @@ int main()
 
 	assert(i6 == i5);
 
+	auto& op3 = game.GetObjectPool();
+
+	assert(&op2 == &op3);
+
 	op2.Return(i6);
 }

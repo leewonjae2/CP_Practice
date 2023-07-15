@@ -4,9 +4,8 @@ namespace lab9
 {
 	Game::Game(unsigned int seed, unsigned int poolSize)
 		: mRandom(seed)
-		, mPool(4)
 	{
-
+		mPool = new ObjectPool<IceCube>(poolSize);
 	}
 
 	Game::~Game()
@@ -15,13 +14,13 @@ namespace lab9
 		{
 			delete (*it);
 		}
-
+		delete mPool;
 		mActiveGameObjects.clear();
 	}
 
 	void Game::Spawn()
 	{
-		IceCube* iceCube = mPool.Get();
+		IceCube* iceCube = mPool->Get();
 		iceCube->Initialize(mRandom.GetNext() % MAX_FRAME_COUNT_TO_LIVE + 1);
 		mActiveGameObjects.push_back(iceCube);
 	}
@@ -36,7 +35,7 @@ namespace lab9
 			if (!iceCube->IsActive())
 			{
 				it = mActiveGameObjects.erase(it);
-				mPool.Return(iceCube);
+				mPool->Return(iceCube);
 				continue;
 			}
 
@@ -52,6 +51,6 @@ namespace lab9
 
 	ObjectPool<IceCube>& Game::GetObjectPool()
 	{
-		return mPool;
+		return *mPool;
 	}
 }

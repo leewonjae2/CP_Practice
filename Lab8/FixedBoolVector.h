@@ -88,7 +88,7 @@ namespace lab8
 			i++;
 			if (i < mSize)
 			{
-				mVector[i / 32] = ((mVector[i / 32] >> i) << (i - 1)) | (mVector[mSize / 32] & ((1 << (i)) - 1));
+				mVector[i / 32] = ((mVector[i / 32] >> (i - 32 * (i / 32)))) << ((i - 32 * (i / 32)) - 1) | (mVector[mSize / 32] & ((1 << ((i - 32 * (i / 32)))) - 1));
 				for (i = i / 32; i < mSize / 32; i++)
 				{
 					if (mVector[i + 1] & 1)

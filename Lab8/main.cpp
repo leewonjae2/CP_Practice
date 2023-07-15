@@ -130,12 +130,29 @@ int main()
 	std::cout << "Test FixedBoolVector constructor - fit memroy: PASS" << std::endl;
 	for (int i = 0; i < 65; i++)
 	{
+		if (i == 35)
+		{
+			boolVector2.Add(true);
+		}
+		if (i == 32)
+		{
+			boolVector2.Add(true);
+			boolVector2.Add(true);
+		}
 		boolVector2.Add(false);
 	}
 
+
 	assert(boolVector2.Add(true) == false);
 	assert(boolVector2.GetSize() == 65);
-	assert(boolVector2.GetIndex(true) == -1);
+	assert(boolVector2.GetIndex(true) == 32);
+	assert(boolVector2.Remove(true) == true);
+	assert(boolVector2.GetSize() == 64);
+
+	assert(boolVector2.Add(true) == true);
+	assert(boolVector2.GetIndex(true) == 32);
+	assert(boolVector2.Remove(false) == true);
+	assert(boolVector2.GetIndex(true) == 35);
 	std::cout << "Test FixedBoolVector GetIndex(): PASS" << std::endl;
 
 	return 0;

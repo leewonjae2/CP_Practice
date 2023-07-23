@@ -20,6 +20,8 @@ namespace lab10
 
 		std::shared_ptr<Node<T>> operator[](unsigned int index) const;
 		unsigned int GetLength() const;
+
+
 	private:
 		unsigned int mLength;
 		std::shared_ptr<Node<T>> mHead;
@@ -87,19 +89,22 @@ namespace lab10
 	bool DoublyLinkedList<T>::Delete(const T& data)
 	{
 		shared_ptr<Node<T>> i = mHead;
-		for (; i->Next != nullptr; i = i->Next)
+		for (; i != nullptr; i = i->Next)
 		{
 			if (*(i->Data) == data)
 			{
 				if (i == mHead)
 				{
 					mHead = mHead->Next;
+					mHead->Previous.reset();
+					mLength--;
 					return true;
 				}
 				if (i == mTail)
 				{
 					mTail = mTail->Previous.lock();
-					mTail->Next = nullptr;
+					mTail->Next.reset();
+					mLength--;
 					return true;
 				}
 				i->Previous.lock()->Next = i->Next;

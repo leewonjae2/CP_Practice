@@ -10,6 +10,11 @@ namespace lab11
 	public:
 		Storage(unsigned int length);
 		Storage(unsigned int length, const T& initialValue);
+
+		Storage(Storage& other);
+
+		Storage<T> operator=(Storage& other);
+
 		Storage(Storage&& other);
 
 		Storage<T> operator=(Storage&& other);
@@ -45,7 +50,30 @@ namespace lab11
 	}
 
 	template<typename T>
-	inline lab11::Storage<T>::Storage(Storage&& other)
+	Storage<T>::Storage(Storage& other)
+		: mLength(other.mLength)
+	{
+		for (unsigned int i = 0; i < mLength; i++)
+		{
+			mArray[i] = other.mArray[i];
+		}
+	}
+
+	template<typename T>
+	Storage<T> Storage<T>::operator=(Storage& other)
+	{
+		mLength = other.mLength;
+
+		for (unsigned int i = 0; i < mLength; i++)
+		{
+			mArray[i] = other.mArray[i];
+		}
+
+		return *this;
+	}
+
+	template<typename T>
+	Storage<T>::Storage(Storage&& other)
 		: mArray(move(other.mArray))
 		, mLength(other.mLength)
 	{
@@ -54,7 +82,7 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T> inline lab11::Storage<T>::operator=(Storage&& other)
+	Storage<T> lab11::Storage<T>::operator=(Storage&& other)
 	{
 		if (this != &other)
 		{

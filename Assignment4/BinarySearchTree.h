@@ -112,8 +112,8 @@ namespace assignment4
 				}
 				else
 				{
-					std::shared_ptr succesor = Succesor(search);
-					std::shared_ptr sc_parent = succesor->Parent.lock();
+					std::shared_ptr<TreeNode<T>> succesor = Succesor(search);
+					std::shared_ptr<TreeNode<T>> sc_parent = succesor->Parent.lock();
 					if (sc_parent != search)
 					{
 						ShiftNodes(succesor, succesor->Right);
@@ -165,7 +165,7 @@ namespace assignment4
 	template<typename T>
 	inline void assignment4::BinarySearchTree<T>::ShiftNodes(std::shared_ptr<TreeNode<T>> target, std::shared_ptr<TreeNode<T>> child)
 	{
-		std::shared_ptr parent = target->Parent.lock();
+		std::shared_ptr<TreeNode<T>> parent = target->Parent.lock();
 		if (parent == nullptr)
 		{
 			mHead = child;

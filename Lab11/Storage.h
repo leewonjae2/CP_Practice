@@ -50,6 +50,9 @@ namespace lab11
 	Storage<T>::Storage(Storage& other)
 		: mLength(other.mLength)
 	{
+		mArray = nullptr;
+		mArray = std::make_unique<T[]>(mLength);
+
 		for (unsigned int i = 0; i < mLength; i++)
 		{
 			mArray[i] = other.mArray[i];
@@ -59,13 +62,18 @@ namespace lab11
 	template<typename T>
 	Storage<T> Storage<T>::operator=(Storage& other)
 	{
-		mLength = other.mLength;
-
-		for (unsigned int i = 0; i < mLength; i++)
+		if (this != &other)
 		{
-			mArray[i] = other.mArray[i];
-		}
+			mLength = other.mLength;
+			mArray = nullptr;
+			mArray = std::make_unique<T[]>(mLength);
 
+
+			for (unsigned int i = 0; i < mLength; i++)
+			{
+				mArray[i] = other.mArray[i];
+			}
+		}
 		return *this;
 	}
 
@@ -100,6 +108,7 @@ namespace lab11
 		if (index < mLength)
 		{
 			mArray[index] = data;
+			return true;
 		}
 		return false;
 	}

@@ -13,11 +13,11 @@ namespace lab11
 
 		Storage(Storage& other);
 
-		Storage<T> operator=(Storage& other);
+		Storage<T>& operator=(Storage& other);
 
 		Storage(Storage&& other);
 
-		Storage<T> operator=(Storage&& other);
+		Storage<T>& operator=(Storage&& other);
 
 		bool Update(unsigned int index, const T& data);
 		const std::unique_ptr<T[]>& GetData() const;
@@ -60,14 +60,24 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T> Storage<T>::operator=(Storage& other)
+	Storage<T>& Storage<T>::operator=(Storage& other)
 	{
-		if (this != &other)
+
+		mLength = other.mLength;
+		if (this == &other)
 		{
-			mLength = other.mLength;
+			std::unique_ptr<T[]> temp = move(other.mArray);
 			mArray = nullptr;
 			mArray = std::make_unique<T[]>(mLength);
-
+			for (unsigned int i = 0; i < mLength; i++)
+			{
+				mArray[i] = temp[i];
+			}
+		}
+		else 
+		{
+			mArray = nullptr;
+			mArray = std::make_unique<T[]>(mLength);
 
 			for (unsigned int i = 0; i < mLength; i++)
 			{
@@ -87,7 +97,7 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T> lab11::Storage<T>::operator=(Storage&& other)
+	Storage<T>& lab11::Storage<T>::operator=(Storage&& other)
 	{
 		if (this != &other)
 		{

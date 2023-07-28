@@ -34,7 +34,7 @@ namespace lab11
 	{
 		for (unsigned int i = 0; i < length; i++)
 		{
-			mArray[i] = NULL;
+			mArray[i] = static_cast<T>(NULL);
 		}
 	}
 
@@ -88,7 +88,7 @@ namespace lab11
 		{
 			mArray = nullptr;
 
-			mArray = other.mArray;
+			mArray = move(other.mArray);
 			mLength = other.mLength;
 
 			other.mArray = nullptr;

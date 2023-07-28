@@ -32,10 +32,7 @@ namespace lab11
 		: mLength(length)
 		, mArray(new T[length])
 	{
-		for (unsigned int i = 0; i < length; i++)
-		{
-			mArray[i] = static_cast<T>(NULL);
-		}
+		memset(mArray.get(), NULL, length * sizeof(T));
 	}
 
 	template<typename T>

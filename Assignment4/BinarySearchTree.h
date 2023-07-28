@@ -114,7 +114,7 @@ namespace assignment4
 				{
 					std::shared_ptr<TreeNode<T>> succesor = Succesor(search);
 					std::shared_ptr<TreeNode<T>> scParent = succesor->Parent.lock();
-					if (sc_parent != search)
+					if (scParent != search)
 					{
 						ShiftNodes(succesor, succesor->Right);
 						succesor->Right = search->Right;

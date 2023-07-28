@@ -34,7 +34,7 @@ namespace assignment4
 			mHead = std::make_shared<TreeNode<T>>(move(data));
 			return;
 		}
-		
+
 		std::shared_ptr<TreeNode<T>> search = mHead;
 		std::shared_ptr<TreeNode<T>> parent;
 
@@ -145,23 +145,27 @@ namespace assignment4
 	{
 		std::vector<T> v;
 		std::vector<T> v1;
+		if (startNode == nullptr)
+		{
+			return v;
+		}
 		if (startNode->Left != nullptr)
 		{
 			v1 = TraverseInOrder(startNode->Left);
 			v.insert(v.end(), v1.begin(), v1.end());
 		}
-		
+
 		v.push_back(*(startNode->Data));
-		
+
 		if (startNode->Right != nullptr)
 		{
 			v1 = TraverseInOrder(startNode->Right);
 			v.insert(v.end(), v1.begin(), v1.end());
 		}
-		
+
 		return v;
 	}
-	
+
 	template<typename T>
 	inline void assignment4::BinarySearchTree<T>::ShiftNodes(std::shared_ptr<TreeNode<T>> target, std::shared_ptr<TreeNode<T>> child)
 	{

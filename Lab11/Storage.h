@@ -67,7 +67,6 @@ namespace lab11
 		if (this == &other)
 		{
 			std::unique_ptr<T[]> temp = move(other.mArray);
-			mArray = nullptr;
 			mArray = std::make_unique<T[]>(mLength);
 			for (unsigned int i = 0; i < mLength; i++)
 			{

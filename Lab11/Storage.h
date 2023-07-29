@@ -63,18 +63,13 @@ namespace lab11
 	Storage<T>& Storage<T>::operator=(Storage& other)
 	{
 
-		mLength = other.mLength;
 		if (this == &other)
 		{
-			std::unique_ptr<T[]> temp = move(other.mArray);
-			mArray = std::make_unique<T[]>(mLength);
-			for (unsigned int i = 0; i < mLength; i++)
-			{
-				mArray[i] = temp[i];
-			}
+			return *this;
 		}
 		else 
 		{
+			mLength = other.mLength;
 			mArray = nullptr;
 			mArray = std::make_unique<T[]>(mLength);
 
